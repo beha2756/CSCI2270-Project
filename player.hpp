@@ -1,6 +1,6 @@
 #include <string>
 #include <queue>
-#include <list>
+#include <vector>
 
 // a struct to store customers group information
 struct winningPair
@@ -16,19 +16,19 @@ struct winningPair
 };
 
 
-class player
+class Player
 {
     public:
 
 		//constructor
-		Player(std::string name);
+		Player();
 
 		~Player();
 
-		void setName();
+		void setName(std::string n);
 
 		//print vector of all winning card pairs
-		printWinningCards();
+		void printWinningCards();
 
 		//incriment player points by 1
 		void addPoint();
@@ -40,22 +40,18 @@ class player
 		std::string getPlayerName();
 
 		//return player points
-		std::string getPlayerPoints();
+		int getPlayerPoints();
 
 		//add card string to player's hand
 		void addToHand(std::string card);
 
 		//remove card string from player's hand
-		void removeFromHand(int cardNum)
-		{
-
-		}
-
+		void removeFromHand(int cardNum);
 
     private:
 
 		std::string name;
 		int points;
-		std::list <std::string> cards;
+		std::vector <std::string> cards;
 		std::queue <winningPair> winningPairs;
 };
