@@ -34,7 +34,9 @@ public:
 
     /*
     function: shuffleDeck
-    purpose: shuffles the deck using
+    purpose: shuffles the deck using Fisher-Yates algorithm
+    parameters: none
+    return: none
     */
     void shuffleDeck();
 
