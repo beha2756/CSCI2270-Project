@@ -21,7 +21,11 @@ class player
     public:
 
 		//constructor
-		player(std::string name);
+		Player(std::string name);
+
+		~Player();
+
+		void setName();
 
 		//print vector of all winning card pairs
 		printWinningCards();
@@ -42,7 +46,10 @@ class player
 		void addToHand(std::string card);
 
 		//remove card string from player's hand
-		void removeFromHand(std::string card);
+		void removeFromHand(int cardNum)
+		{
+
+		}
 
 
     private:
@@ -52,5 +59,3 @@ class player
 		std::list <std::string> cards;
 		std::queue <winningPair> winningPairs;
 };
-
-#endif
