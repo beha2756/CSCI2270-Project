@@ -17,7 +17,16 @@ int main()
 	myPlayer.addPoint();
 	myPlayer.addPoint();
 
+	myPlayer.addToHand("test");
+	myPlayer.addToHand("yest");
+	myPlayer.addToHand("quest");
+
 	std::cout << myPlayer.getPlayerName() << " " << myPlayer.getPlayerPoints() << std::endl;
 
+	myPlayer.printWinningCards();
+
+	std::vector<std::string> myNewVector = myPlayer.getPlayerCards();
+
+	std::cout << myNewVector[0] << std::endl;
 	return 0;
 }

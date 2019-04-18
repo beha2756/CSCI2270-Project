@@ -1,6 +1,7 @@
 #include <string>
 #include <queue>
 #include <vector>
+#include <iostream>
 
 // a struct to store customers group information
 struct winningPair
@@ -46,12 +47,14 @@ class Player
 		void addToHand(std::string card);
 
 		//remove card string from player's hand
-		void removeFromHand(int cardNum);
+		std::string playCard(int cardNum);
+
+		std::vector<std::string> getPlayerCards();
 
     private:
 
 		std::string name;
 		int points;
 		std::vector <std::string> cards;
-		std::queue <winningPair> winningPairs;
+		std::vector <winningPair> winningPairs;
 };
