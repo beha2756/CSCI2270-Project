@@ -1,3 +1,9 @@
 // constructor takes in num players?
-void setMaxPoints(int points);
-void newGame(int numPlayers);
+void game::setMaxPoints(int points)
+{
+
+}
+void game::newGame(int numPlayers)
+{
+	
+}
