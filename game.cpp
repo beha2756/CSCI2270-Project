@@ -92,7 +92,6 @@ void getTurnNumber(){
 void playTurn(){
 	int cardCzar = getTurnNumber() % getNumPlayers();
 	int chosenCardNum;
-	int
 	std::cout << Players[cardCzar].getPlayerName() << " is the card czar. They will not play a card this turn" << std::endl;
 	for(int i = 0; i < getNumPlayers(); i++){
 		if(cardCzar != i){
