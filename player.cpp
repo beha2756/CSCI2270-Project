@@ -106,7 +106,7 @@ std::vector<std::string> Player::getPlayerCards()
 	/*
 	Purpose: Returns the vector of the players cards
 	Parameters: None
-	Returns: Vector of card strings;
+	Returns: Vector of card strings
 	*/
 	return cards;
 }
