@@ -92,7 +92,7 @@ void getTurnNumber(){
 void playTurn(){
 	int cardCzar = getTurnNumber() % getNumPlayers();
 	int chosenCardNum;
-	int 
+	int
 	std::cout << Players[cardCzar].getPlayerName() << " is the card czar. They will not play a card this turn" << std::endl;
 	for(int i = 0; i < getNumPlayers(); i++){
 		if(cardCzar != i){
@@ -102,4 +102,101 @@ void playTurn(){
 			std::cin >> chosenCardNum;
 		}
 	}
+}
+
+void printCards(std::vector<std::string> inputVector, int numCards, bool includeNumbers)
+{
+	/*
+	Purpose: Takes in a vector of strings, where each string represents a card, and prints them
+	Parameters: Vector of strings (cards), number of cards to print, and whether or not to number the cards
+	Returns: None
+	*/
+	std::string temp1;
+	std::vector<int> currentLineLength(numCards);
+	int maxLineLength = 15;
+	int cardHeight = 9;
+
+	//create an array of string vectors
+	std::vector<std::vector<std::string>> cardVect(numCards);
+
+	//loops for every card passed into function
+	for(int i=0; i<numCards; i++)
+	{
+		//open stream for card string stored in input card std::vector<int> v;
+		std::stringstream cardStream(inputVector[i]);
+
+		//Push each word from the string into the vector
+		while(getline(cardStream,temp1,' '))
+		{
+			cardVect[i].push_back(temp1);
+		}
+
+	}
+	// okay now we have an array of vectors, where each vector is a vector of
+	// the words from the string
+
+	//loops for each line of the card;
+	std::vector<int> index(7);
+
+	//print top of card
+	for(int i=0; i<numCards; i++)
+	{
+		std::cout << "     ___________________";
+	}
+	std::cout << std::endl;
+	for(int i=0; i<numCards; i++)
+	{
+		std::cout << "     |                 |";
+	}
+	std::cout << std::endl;
+
+	//print content of card
+	for(int i=0; i<cardHeight; i++)
+	{
+		for(int j=0; j<numCards;j++)
+		{
+			currentLineLength[j] = 0;
+		}
+		//loops for each card
+		for(int j=0; j<numCards; j++)
+		{
+			std::cout << "     | ";
+			while(currentLineLength[j] + cardVect[j][index[j]].size() + 1 <= maxLineLength)
+			{
+				// breaks if no more words in vector
+				if(index[j] >= cardVect[j].size()) break;
+
+				std::cout << cardVect[j][index[j]] << " ";
+
+				//increment line length by word length + 1 (the space)
+				currentLineLength[j] += cardVect[j][index[j]].size() + 1;
+				index[j]++;
+			}
+			//fill the rest of the line with spaces
+			for(int k=currentLineLength[j]; k<maxLineLength; k++)
+			{
+				std::cout << " ";
+			}
+			std::cout << " |";
+		}
+		std::cout << std::endl;
+	}
+	//print number on card
+
+	for(int i=0; i<numCards; i++)
+	{
+
+		if(includeNumbers)
+			std::cout << "     |------=(" << i+1 << ")=------|";
+		else
+			std::cout << "     |                 |";
+	}
+	std::cout << std::endl;
+	//print bottom of card
+	for(int i=0; i<numCards; i++)
+	{
+		std::cout << "     |_________________|";
+	}
+	std::cout << std::endl;
+
 }
