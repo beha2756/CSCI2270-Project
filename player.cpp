@@ -1,6 +1,7 @@
 #include <string>
 #include <queue>
 #include <vector>
+#include <iostream>
 #include "player.hpp"
 
 Player::Player()
@@ -28,6 +29,12 @@ void Player::printWinningCards()
 	Parameters: None
 	Returns:	None
 	*/
+	std::cout << name << "'s Winning Cards:" << std::endl;
+	for(int i=0; i<winningPairs.size();i++)
+	{
+		std::cout << "Black Card: "<< winningPairs[i].blackCard << std::endl;
+		std::cout << "White Card:"<< winningPairs[i].whiteCard << std::endl;
+	}
 
 }
 
@@ -49,7 +56,7 @@ void Player::addWinningPair(std::string blackCard,std::string whiteCard)
 	Returns: None
 	*/
 	winningPair newPair(blackCard,whiteCard);
-	winningPairs.push(newPair);
+	winningPairs.push_back(newPair);
 }
 
 std::string Player::getPlayerName()
@@ -72,22 +79,34 @@ int Player::getPlayerPoints()
 	return points;
 }
 
-void Player::addToHand(std::string card)
+void Player::addToHand(std::string cardText)
 {
 	/*
 	Purpose: Add a card to the player's hand
 	Parameters: String of card to be added
 	Returns: None
 	*/
-	cards.push_back(card);
+	cards.push_back(cardText);
 }
 
-void Player::removeFromHand(int cardNum)
+std::string Player::playCard(int cardNum)
 {
 	/*
-	Purpose: Removes a card from the player's hand
+	Purpose: Returns the string of the chosen card and removes card from player's hand
 	Parameters: Card number to be removed
-	Returns: None
+	Returns: String from card
 	*/
+	std::string cardText = cards[cardNum];
 	cards.erase(cards.begin()+cardNum-1);
+	return cardText;
+}
+
+std::vector<std::string> Player::getPlayerCards()
+{
+	/*
+	Purpose: Returns the vector of the players cards
+	Parameters: None
+	Returns: Vector of card strings;
+	*/
+	return cards;
 }
