@@ -318,7 +318,7 @@ void Game::playTurn()
 				chosenCardNum = stoi(temp);
 			}
 			//adds the chosen card to the played cards vector and also removes that card from the hand
-			playedCards.push_back(Players[i].playCard(chosenCardNum - 1));
+			playedCards.push_back(Players[i].playCard(chosenCardNum));
 		}
 	}
 
