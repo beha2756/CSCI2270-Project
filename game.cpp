@@ -81,9 +81,11 @@ void Game::addPlayers()
 	std::string name;
 	for(int i=0; i<numPlayers;i++)
 	{
+		Player newPlayer;
 		std::cout << "Enter name for Player " << i+1 <<": ";
 		std::cin << name;
-		Players[i].setName(name);
+		newPlayer.setName(name);
+		Players.push_back(newPlayer);
 	}
 }
 
