@@ -60,14 +60,12 @@ parameters: none
 return: none
 */
 void CardDeck::shuffleDeck(){
+    //add to a vector for shuffle functionality
     std::vector<std::string> shuffleVec(deck.begin(),deck.end());
-    // for(int i = 0; i < deck.size(); i++){
-    //     shuffleVec.push_back(dealCard());
-    // }
+    //seeding the random engine
     unsigned int seed = rand();
+    //shuffle the vector
     shuffle(shuffleVec.begin(), shuffleVec.end(), std::default_random_engine(seed));
-		deck.assign(shuffleVec.begin(),shuffleVec.end());
-    // for(int i = 0; i < shuffleVec.size(); i++){
-    //     addToDeck(shuffleVec[i]);
-    // }
+    //repopulate the deck
+	deck.assign(shuffleVec.begin(),shuffleVec.end());
 }
