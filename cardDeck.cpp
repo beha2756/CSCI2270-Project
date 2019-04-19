@@ -61,13 +61,14 @@ parameters: none
 return: none
 */
 void CardDeck::shuffleDeck(){
-    std::vector<std::string> shuffleVec;
-    for(int i = 0; i < deck.size(); i++){
-        shuffleVec.push_back(dealCard());
-    }
+    std::vector<std::string> shuffleVec(deck.begin(),deck.end());
+    // for(int i = 0; i < deck.size(); i++){
+    //     shuffleVec.push_back(dealCard());
+    // }
     unsigned int seed = rand();
     shuffle(shuffleVec.begin(), shuffleVec.end(), std::default_random_engine(seed));
-    for(int i = 0; i < shuffleVec.size(); i++){
-        addToDeck(shuffleVec[i]);
-    }
+		deck.assign(shuffleVec.begin(),shuffleVec.end());
+    // for(int i = 0; i < shuffleVec.size(); i++){
+    //     addToDeck(shuffleVec[i]);
+    // }
 }
