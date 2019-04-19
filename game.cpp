@@ -174,9 +174,7 @@ void Game::dealHands(int numCards, int cardCzar)
 }
 
 //gets names of users and adds them to the player class
-void Game::addPlayers(){
 
-}
 
 /*
 Purpose: Checks to see if the game is over.
@@ -320,6 +318,7 @@ void Game::playTurn()
 	//deals new cards
 	dealHands(1, cardCzar);
 }
+
 
 
 
