@@ -77,6 +77,15 @@ void Game::dealHands(int numCards, int cardCzar)
 
 //gets names of users and adds them to the player class
 void Game::addPlayers()
+{
+	std::string name;
+	for(int i=0; i<numPlayers;i++)
+	{
+		std::cout << "Enter name for Player " << i+1 <<": ";
+		std::cin << name;
+		Players[i].setName(name);
+	}
+}
 
 /*
 Purpose: Checks to see if the game is over.
