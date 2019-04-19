@@ -255,7 +255,8 @@ void Game::addPlayers()
 	{
 		Player newPlayer;
 		std::string playerName;
-		std::cout << "Enter name for Player " << i+1;
+		std::cout << "Enter name for Player " << i+1 << ": ";
+		std::cin.ignore();
 		getline(std::cin,playerName);
 
 		newPlayer.setName(playerName);
@@ -272,7 +273,6 @@ void Game::playTurn()
 {
 	//gets the index of the card czar
 	int cardCzar = getTurnNumber() % getNumPlayers();
-
 	std::string chosenCard;
 	int chosenCardNum;
 	std::string winningCard;

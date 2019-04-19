@@ -32,9 +32,9 @@ void playGame(int numPlayers,int maxPoints)
 {
 
 	Game myGame(numPlayers,maxPoints);
-	std::cout << "Test" << std::endl;
 	while(true)
 	{
+		myGame.addPlayers();
 		myGame.playTurn();
 	}
 }
