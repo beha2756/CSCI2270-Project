@@ -1,10 +1,18 @@
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include "game.hpp"
+
 /*
-Purpose: Initializes the number of players in a game to numPlayers
+Purpose: Initializes the number of players in a game to numPlayers and pointsToWin to maxPoints
 Parameters: The number of players in the game
 Return: None
 */
-Game::Game(int numPlayers){
+Game::Game(int numPlayers, int maxPoints)
+{
 	this->numPlayers = numPlayers;
+	pointsToWin = maxPoints;
 	turnNumber = 0;
 }
 
@@ -13,7 +21,8 @@ Purpose: Reads in a file and store the strings in the white card deck
 Parameters: The name of the file to be read
 Return: None
 */
-void getWhiteDeck(std::string fileName){
+void Game::getWhiteDeck(std::string fileName)
+{
 	std::string card;
 	std::ifstream whiteDeckStream(fileName);
 	while(getline(whiteDeck,card)){
@@ -26,102 +35,190 @@ Purpose: Reads in a file and store the strings in the black card deck
 Parameters: The name of the file to be read
 Return: None
 */
-void getBlackDeck(std::string fileName){
+void Game::getBlackDeck(std::string fileName)
+{
 	std::string card;
 	std::ifstream blackDeckStream(fileName);
 	while(getline(blackDeckStream,card)){
 		blackDeck.addToDeck(card);
 	}
 }
-//deals numCards to ever player
-void dealHands(int numCards){
-	for(int i = 0; i < numCards; i++){
-		for(int j = 0; j < getNumPlayers(); j++){
-			Player[j].addToHand(whiteDeck.dealCard());
+
+/*
+Purpose: Reads white cards to each player
+Parameters: The number of cards to be dealt
+Return: None
+*/
+void Game::dealHands(int numCards, int cardCzar)
+{
+	if(cardCzar == -1)
+	{
+		for(int i = 0; i < numCards; i++)
+		{
+			for(int j = 0; j < getNumPlayers(); j++)
+			{
+				Player[j].addToHand(whiteDeck.dealCard());
+			}
+		}
+	}
+	else{
+		for(int i = 0; i < numCards; i++)
+		{
+			for(int j = 0; j < getNumPlayers(); j++)
+			{
+				if(cardCzar != j)
+				{
+					Player[j].addToHand(whiteDeck.dealCard());
+				}
+			}
 		}
 	}
 }
-//
-//void startGame(int numPlayers);
 
-void setMaxPoints(int numPoints){
-	pointsToWin = numPoints;
-}
 //gets names of users and adds them to the player class
-void addPlayers();
+void Game::addPlayers();
 
 /*
 Purpose: Checks to see if the game is over.
 Parameters: None
 Return: None
 */
-bool isGameOver(){
-	for(int i = 0; i < getNumPlayers(); i++){
-		if(Players[i].getPlayerPoints() == getNumPointsToWin()){
+bool Game::isGameOver()
+{
+	for(int i = 0; i < getNumPlayers(); i++)
+	{
+		if(Players[i].getPlayerPoints() == getNumPointsToWin())
+		{
 			std::cout << "Game is over because " << Players[i].getName() << " has " << getNumPointsToWin() << " points" << std::endl;
 			return true;
 		}
 	}
-	if(blackCards.getSize() == 0){
+	if(blackCards.getSize() == 0)
+	{
 		std::cout << "The black card deck is out of cards" << std::endl;
 		return true;
 	}
-	if(whiteCards.getSize()) < getNumPlayers()){
+	if(whiteCards.getSize()) < getNumPlayers())
+	{
 		std::cout << "There are not enough white cards for another hand" << std::endl;
 		return true;
 	}
 }
 
-
-int getNumPlayers(){
+/*
+Purpose: Returns the number of players
+Parameters: None
+Return: Number of players
+*/
+int Game::getNumPlayers()
+{
 	return numPlayers;
 }
 
-int getNumPointsToWin(){
+/*
+Purpose: Returns the number of points to win
+Parameters: None
+Return: Number of points to win
+*/
+int Game::getNumPointsToWin()
+{
 	return pointsToWin;
 }
 
-void incrementTurnNumber(){
+/*
+Purpose: increments the turn counter
+Parameters: None
+Return: None
+*/
+void Game::incrementTurnNumber()
+{
 	turnNumber++;
 }
 
-void getTurnNumber(){
+/*
+Purpose: Returns the turn number
+Parameters: None
+Return: Turn number
+*/
+void Game::getTurnNumber()
+{
 	return turnNumber;
 }
 
-void playTurn(){
+/*
+Purpose: Simulates one turn of the game
+Parameters: None
+Return: None
+*/
+void Game::playTurn()
+{
+	//gets the index of the card czar
 	int cardCzar = getTurnNumber() % getNumPlayers();
+
 	std::string chosenCard;
 	int chosenCardNum;
 	std::string winningCard;
-	std::vector <std::string> playerName;
+
+	//vector of the index of each player who plays a card
+	std::vector <int> playerNum;
+
+	//vector of strings with each index being the string of the card that player played
 	std::vector <std::string> playedCards;
+
+	//gets the string of the black card for the turn
 	std::string blackCard = blackCards.dealCard();
+
 	std::cout << Players[cardCzar].getPlayerName() << " is the card czar. They will not play a card this turn" << std::endl;
+
+	//runs through all the players
 	for(int i = 0; i < getNumPlayers(); i++){
 
+		//skips the card czar
 		if(cardCzar != i){
-			playerName.push_back(Players[i].getPlayerName());
+
+			//adds the index of the player to the playerNum vector
+			playerNum.push_back(i);
+
 			std::cout << "The black card for this turn is " << blackCard << std::endl;
-			printCards(Players[i].getPlayerCards(), 7, true); //make sure name of func is printHand
+
+			//Prints the players cards
+			printCards(Players[i].getPlayerCards(), 7, true);
+
 			std::cout << "Enter the number of the card you would like to play " << std::endl;
 			std::cin >> chosenCardnum;
 
-			while(chosenCardNum >= 7 || chosenCardNum <= 0){
+			//Checks for invalid NUMBER inputs
+			while(chosenCardNum > 7 || chosenCardNum <= 0)
+			{
+				//gets a new number for a card to be played
 				std::cout << "Enter a new number for a card you would like to play, your last choice was invalid" << std::endl;
 				printCards(Players[i].getPlayerCards(), 7, true);
 				std::cin >> chosenCardNum;
 			}
-
+			//adds the chosen card to the played cards vector and also removes that card from the hand
 			playedCards.push_back(Players[i].playCard(chosenCardNum));
 		}
 	}
+
 	std::cout << "Pass the computer to " << Players[cardCzar].getPlayerName() << "." << std::endl;
+
+	//prints the cards that have been played
 	printCards(playedCards, 6, true);
+
+	//gets the number of the card the card czar chose
 	std::cout << "Enter the number of the winning card with 1 being the first card" << std::endl;
 	std::cin >> winningCard;
-	std::cout << playerName[stoi(winningCard - 1)] << "won this round" << std::endl;
 
+	//prints out the name of the winning player
+	std::cout << Players[playerNum[stoi(winningCard) - 1]].getPlayerName() << "won this round" << std::endl;
+
+	//adds the winning pair to the winning players winning pair struct
+	Player[playerNum[stoi(winningCard) - 1]].winningPair(blackCard, playedCards[stoi(winningCard) - 1]);
+
+	incrementTurnNumber();
+
+	//deals new cards
+	dealHands(1, cardCzar);
 }
 
 void printCards(std::vector<std::string> inputVector, int numCards, bool includeNumbers)
