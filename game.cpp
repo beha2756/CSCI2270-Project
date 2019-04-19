@@ -5,10 +5,7 @@
 #include <vector>
 
 #include "game.hpp"
-void printBlackCard(std::string blackCardText)
-{
 
-}
 void printCards(std::vector<std::string> inputVector, bool includeNumbers)
 {
 	/*
@@ -106,7 +103,150 @@ void printCards(std::vector<std::string> inputVector, bool includeNumbers)
 	std::cout << std::endl;
 
 }
+void printBlackCard(std::string blackCardText)
+{
+	std::vector<std::string> vect;
+	vect.push_back(blackCardText);
+	printCards(vect,false);
+}
+// void printPlayInfo(int cardCzar, int playing, int playerPoints[], std::string playerNames[], int playerNum, int maxWinPoints)
+/*
+Purpose: Print out all player information onto the screen
+Parameters: int representing card czar, int for which players turn, vector of players classes, and  points to win
+Return: None
+*/
+void printPlayInfo(int cardCzar, int playing, std::vector<Player> playerVect, int maxWinPoints)
+{
+	int playerNum = playerVect.size();
+	//print top of table
+	for(int i= 0; i<playerNum+2; i++)
+	{
+		if(i==0)
+			std::cout << "     ";
+		std::cout << "________________";
+	}
+	std::cout << std::endl;
 
+	//print player/czar flag
+	for(int i=0; i<playerNum+1;i++)
+	{
+
+		if(i == 0)
+			std::cout << "     |";
+		if(i == cardCzar)
+			std::cout << "     [CZAR]    |";
+		else if(i == playing)
+			std::cout << "   [PLAYING]   |";
+		else if(i == playerNum)
+			std::cout << "|############################||";
+		else
+			std::cout << "               |";
+	}
+	std::cout << std::endl;
+
+	//print table divider
+	for(int i=0; i<playerNum+1; i++)
+	{
+		if(i < playerNum)
+		{
+			if(i==0)
+				std::cout << "     |";
+			std::cout << "===============|";
+		}
+		else if (i == playerNum)
+		{
+			std::cout << "|#                          #||";
+		}
+	}
+	std::cout << std::endl;
+
+	//print player names
+	for(int i=0; i<playerNum+1;i++)
+	{
+		if(i < playerNum)
+		{
+			if(i == 0)
+				std::cout << "     ";
+			std::cout  << "| "<< playerVect[i].getPlayerName();
+			for(int j=playerVect[i].getPlayerName().size(); j<14; j++)
+			{
+				std::cout << " ";
+			}
+			if(i == playerNum-1)
+			{
+				std::cout << "|";
+			}
+		}
+		else if(i == playerNum)
+		{
+			std::cout << "|#    NUM POINTS TO WIN:    #||";
+		}
+
+	}
+	std::cout << std::endl;
+
+	//print table divider
+	for(int i=0; i<playerNum+1; i++)
+	{
+		if(i < playerNum)
+		{
+			if(i==0)
+				std::cout << "     |";
+			std::cout << "===============|";
+		}
+		else if (i == playerNum)
+		{
+			// std::cout << "|# NUMBER OF POINTS TO WIN: #||";
+			std::cout << "|#            " << maxWinPoints;
+			if(maxWinPoints < 10)
+				std::cout << " ";
+			std::cout << "            #||";
+		}
+	}
+	std::cout << std::endl;
+
+	//print scores
+	for(int i=0; i<playerNum+1;i++)
+	{
+		if(i<playerNum)
+		{
+			if(i == 0)
+				std::cout << "     ";
+			std::cout << "| Score: " << playerVect[i].getPlayerPoints();
+			if(playerVect[i].getPlayerPoints() < 10)
+				std::cout << " ";
+			for(int j=9; j<14; j++)
+			{
+				std::cout << " ";
+			}
+			if(i == playerNum-1)
+			{
+				std::cout << "|";
+			}
+		}
+		else if(i == playerNum)
+		{
+			std::cout << "|#                          #||";
+		}
+
+	}
+	std::cout << std::endl;
+	//print table divider
+	for(int i=0; i<playerNum+1; i++)
+	{
+		if(i < playerNum)
+		{
+			if(i==0)
+				std::cout << "     |";
+			std::cout << "===============|";
+		}
+		else if (i == playerNum)
+		{
+			std::cout << "|############################||";
+		}
+	}
+	std::cout << std::endl << std::endl;
+}
 /*
 Purpose: Initializes the number of players in a game to numPlayers and pointsToWin to maxPoints
 Parameters: The number of players in the game
@@ -303,7 +443,15 @@ void Game::playTurn()
 			playerNum.push_back(i);
 
 			std::cout << "The black card for this turn is " << blackCard << std::endl;
+			//Print player info
+			printPlayInfo(cardCzar,i,Players,pointsToWin);
+			//print the black card for the round
+			printBlackCard(blackCard);
 
+			for(int i=0; i<15; i++)
+			{
+				std::cout << std::endl;
+			}
 			//Prints the players cards
 			printCards(Players[i].getPlayerCards(), true);
 

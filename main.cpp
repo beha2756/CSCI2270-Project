@@ -32,12 +32,22 @@ void playGame(int numPlayers,int maxPoints)
 {
 
 	Game myGame(numPlayers,maxPoints);
+	//add the players
 	myGame.addPlayers();
+	//deal the first hand
 	myGame.dealHands(7,-1);
+	//loops while game is running
 	while(true)
 	{
+		//plays a turn
 		myGame.playTurn();
+		//breaks if game is over
+		if(myGame.isGameOver())
+			break;
 	}
+	//after game ends
+	
+
 }
 
 void mainMenu()
