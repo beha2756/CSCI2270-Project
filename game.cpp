@@ -117,6 +117,8 @@ Game::Game(int numPlayers, int maxPoints)
 
 	getWhiteDeck("whiteCards.txt");
 	getBlackDeck("blackCards.txt");
+	whiteCards.shuffleDeck();
+	blackCards.shuffleDeck();
 }
 
 /*
@@ -256,7 +258,6 @@ void Game::addPlayers()
 		Player newPlayer;
 		std::string playerName;
 		std::cout << "Enter name for Player " << i+1 << ": ";
-		std::cin.ignore();
 		getline(std::cin,playerName);
 
 		newPlayer.setName(playerName);
@@ -272,6 +273,7 @@ Return: None
 void Game::playTurn()
 {
 	//gets the index of the card czar
+	std::string temp;
 	int cardCzar = getTurnNumber() % getNumPlayers();
 	std::string chosenCard;
 	int chosenCardNum;
@@ -303,7 +305,8 @@ void Game::playTurn()
 			printCards(Players[i].getPlayerCards(), true);
 
 			std::cout << "Enter the number of the card you would like to play " << std::endl;
-			std::cin >> chosenCardNum;
+			getline(std::cin,temp);
+			chosenCardNum = stoi(temp);
 
 			//Checks for invalid NUMBER inputs
 			while(chosenCardNum > 7 || chosenCardNum <= 0)
@@ -311,7 +314,8 @@ void Game::playTurn()
 				//gets a new number for a card to be played
 				std::cout << "Enter a new number for a card you would like to play, your last choice was invalid" << std::endl;
 				printCards(Players[i].getPlayerCards(), true);
-				std::cin >> chosenCardNum;
+				getline(std::cin,temp);
+				chosenCardNum = stoi(temp);
 			}
 			//adds the chosen card to the played cards vector and also removes that card from the hand
 			playedCards.push_back(Players[i].playCard(chosenCardNum - 1));
@@ -325,7 +329,8 @@ void Game::playTurn()
 
 	//gets the number of the card the card czar chose
 	std::cout << "Enter the number of the winning card with 1 being the first card" << std::endl;
-	std::cin >> winningCard;
+	getline(std::cin,temp);
+	winningCard = stoi(temp);
 
 	//prints out the name of the winning player
 	std::cout << Players[playerNum[stoi(winningCard) - 1]].getPlayerName() << "won this round" << std::endl;
