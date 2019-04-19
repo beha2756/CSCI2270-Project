@@ -9,7 +9,6 @@
 
 // default constructor
 CardDeck::CardDeck(){
-	srand(time(0));
     // nothing to do
 }
 // destructor
