@@ -1,10 +1,13 @@
-#ifndef GAME
-#define GAME
+
+#ifndef GAME_HPP
+#define GAME_HPP
 
 #include <string>
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include "player.cpp"
+#include "cardDeck.hpp"
 
 class Game
 {
@@ -48,15 +51,40 @@ public:
   */
   bool isGameOver();
 
+  /*
+  Purpose: Returns the number of players
+  Parameters: None
+  Return: Number of players
+  */
   int getNumPlayers();
 
+  /*
+  Purpose: Returns the number of points to win
+  Parameters: None
+  Return: Number of points to win
+  */
   int getNumPointsToWin();
 
+  /*
+  Purpose: Simulates one turn of the game
+  Parameters: None
+  Return: None
+  */
   void playTurn();
 
+  /*
+  Purpose: increments the turn counter
+  Parameters: None
+  Return: None
+  */
   void incrementTurnNumber();
 
-  void getTurnNumber();
+  /*
+  Purpose: Returns the turn number
+  Parameters: None
+  Return: Turn number
+  */
+  int getTurnNumber();
 
 private:
   int pointsToWin;
@@ -67,7 +95,9 @@ private:
 
   CardDeck blackCards;
 
-  CardDeck whiteCards
+  CardDeck whiteCards;
 
-  int turnNumber
+  int turnNumber;
 };
+
+#endif
