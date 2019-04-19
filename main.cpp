@@ -40,16 +40,13 @@ void playGame(int numPlayers,int maxPoints)
 	//deal the first hand
 	myGame.dealHands(7,-1);
 	//loops while game is running
-	bool exit = false;
-	while(!exit)
+
+	while(true)
 	{
 		//plays a turn
-		exit = myGame.playTurn();
+		myGame.playTurn();
 		//breaks if game is over
-		if(myGame.isGameOver())
-		{
-			exit = true;
-		}
+		if(myGame.isGameOver()) break;
 	}
 	//after game ends
 

@@ -6,6 +6,11 @@
 
 #include "game.hpp"
 
+/*
+Purpose: Print endlines to the console
+Parameters: number of endlines to print
+Return: None
+*/
 void printEndlines(int n)
 {
 	for(int i=0; i<n; i++)
@@ -13,13 +18,15 @@ void printEndlines(int n)
 		std::cout << std::endl;
 	}
 }
+
+/*
+Purpose: Takes in a vector of strings, where each string represents a card, and prints them
+Parameters: Vector of strings (cards), number of cards to print, and whether or not to number the cards
+Returns: None
+*/
 void printCards(std::vector<std::string> inputVector, bool includeNumbers)
 {
-	/*
-	Purpose: Takes in a vector of strings, where each string represents a card, and prints them
-	Parameters: Vector of strings (cards), number of cards to print, and whether or not to number the cards
-	Returns: None
-	*/
+
 	int numCards = inputVector.size();
 	std::string temp1;
 	std::vector<int> currentLineLength(numCards);
@@ -110,13 +117,18 @@ void printCards(std::vector<std::string> inputVector, bool includeNumbers)
 	std::cout << std::endl;
 
 }
+
+/*
+Purpose: Prints a single black card to the console
+Parameters: String of text to be on the card
+Returns: None
+*/
 void printBlackCard(std::string blackCardText)
 {
 	std::vector<std::string> vect;
 	vect.push_back(blackCardText);
 	printCards(vect,false);
 }
-// void printPlayInfo(int cardCzar, int playing, int playerPoints[], std::string playerNames[], int playerNum, int maxWinPoints)
 /*
 Purpose: Print out all player information onto the screen
 Parameters: int representing card czar, int for which players turn, vector of players classes, and  points to win
@@ -420,7 +432,7 @@ Purpose: Simulates one turn of the game
 Parameters: None
 Return: None
 */
-bool Game::playTurn()
+void Game::playTurn()
 {
 	//gets the index of the card czar
 	std::string temp;
@@ -468,7 +480,7 @@ bool Game::playTurn()
 			//exit condition
 			if(chosenCardNum == 9)
 			{
-				return true;
+				// return true;
 			}
 			//Checks for invalid NUMBER inputs
 			while(chosenCardNum > 7 || chosenCardNum <= 0)
@@ -482,7 +494,7 @@ bool Game::playTurn()
 			//adds the chosen card to the played cards vector and also removes that card from the hand
 			playedCards.push_back(Players[i].playCard(chosenCardNum-1));
 		}
-		return false;
+		// return false;
 	}
 
 

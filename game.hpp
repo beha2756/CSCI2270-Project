@@ -71,7 +71,7 @@ public:
   Parameters: None
   Return: None
   */
-  void playTurn();
+void playTurn();
 
   /*
   Purpose: increments the turn counter
