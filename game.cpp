@@ -333,7 +333,7 @@ void Game::playTurn()
 	winningCard = stoi(temp);
 
 	//prints out the name of the winning player
-	std::cout << Players[playerNum[stoi(winningCard) - 1]].getPlayerName() << "won this round" << std::endl;
+	std::cout << Players[playerNum[stoi(winningCard) - 1]].getPlayerName() << " won this round" << std::endl;
 
 	//adds the winning pair to the winning players winning pair struct
 	Players[playerNum[stoi(winningCard) - 1]].addWinningPair(blackCard, playedCards[stoi(winningCard) - 1]);
