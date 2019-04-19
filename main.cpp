@@ -63,25 +63,44 @@ void mainMenu()
 	{
 		case 1: // new game
 		{
-			std::cout << "          Enter number of players: ";
+			std::cout << std::endl << "          Enter number of players ( Minimum: 3 ): ";
 			while(std::cin >> numPlayers)
 			{
 				if(!std::cin)
 				{
 					std::cout << "          Error: Input must be integer"  << std::endl;
-					std::cout << "          Enter number of players: ";
+					std::cout << std::endl << "          Enter number of players ( Minimum: 3): ";
 				}
 				else if(numPlayers < 3)
 				{
 					std::cout << "          Error: Game must have at least 3 players" << std::endl;
+					std::cout << std::endl << "          Enter number of players ( Minimum: 3): ";
+				}
+				else
+				{
+					break;
+				}
+			}
+			std::cout << "          Enter number of points to win: ";
+			while(std::cin >> numPlayers)
+			{
+				if(!std::cin)
+				{
+					std::cout << "          Error: Input must be integer"  << std::endl;
+					std::cout << "          Enter number of points to win: ";
+				}
+				else if(numPlayers < 1)
+				{
+					std::cout << "          Error: Number of points to win must be at least 1" << std::endl;
 					std::cout << "          Enter number of players: ";
 				}
 				else
 				{
-					playGame(numPlayers,maxPoints);
 					break;
 				}
 			}
+
+			playGame(numPlayers,maxPoints);
 			break;
 		}
 		case 2:
