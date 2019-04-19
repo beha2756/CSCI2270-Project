@@ -53,31 +53,6 @@ void CardDeck::addToDeck(std::string cardData){
 }
 
 /*
-function: swap
-purpose: swaps two values passed in as pointers
-parameters: a - first string (swaps with b)
-            b - string to swap with a
-return: none
-*/
-void swap(std::string *a, std::string *b){
-    std::string temp = *a;
-    *a = *b;
-    *b = temp;
-}
-
-/*
-function: random
-purpose: generates a random number in the specified range
-parameters: min - lower bound of range (inclusive)
-            max - upper bound of range (exclusive)
-return: int in range of [min, max)
-*/
-
-int randomNum(int min, int max){
-    return min + (rand() % (max - min));
-}
-
-/*
 function: shuffleDeck
 purpose: shuffles the deck using std::shuffle
 parameters: none
