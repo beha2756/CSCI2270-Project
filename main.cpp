@@ -32,9 +32,10 @@ void playGame(int numPlayers,int maxPoints)
 {
 
 	Game myGame(numPlayers,maxPoints);
+	myGame.addPlayers();
+	myGame.dealHands(7,-1);
 	while(true)
 	{
-		myGame.addPlayers();
 		myGame.playTurn();
 	}
 }

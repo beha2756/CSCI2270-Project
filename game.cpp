@@ -158,7 +158,7 @@ void Game::dealHands(int numCards, int cardCzar)
 	{
 		for(int i = 0; i < numCards; i++)
 		{
-			for(int j = 0; j < getNumPlayers(); j++)
+			for(int j = 0; j < numPlayers; j++)
 			{
 				Players[j].addToHand(whiteCards.dealCard());
 			}
