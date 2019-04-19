@@ -30,7 +30,7 @@ void printLine(char c, int n, bool endline)
 
 void playGame(int numPlayers,int maxPoints)
 {
-	//Game myGame(numPlayers);
+	//Game myGame(numPlayers,maxPoints);
 }
 
 void mainMenu()
