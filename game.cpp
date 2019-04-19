@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+
 #include "game.hpp"
 
 void printCards(std::vector<std::string> inputVector, bool includeNumbers)
@@ -332,11 +333,4 @@ void Game::playTurn()
 
 	//deals new cards
 	dealHands(1, cardCzar);
-}
-
-
-
-
-int main(){
-
 }

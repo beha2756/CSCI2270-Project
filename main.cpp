@@ -4,9 +4,8 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
-// #include "player.hpp"
-// #include "game.hpp"
-// #include "cardDeck.hpp"
+
+#include "game.hpp"
 
 void disp(std::string filename)
 {
@@ -31,7 +30,11 @@ void printLine(char c, int n, bool endline)
 
 void playGame(int numPlayers,int maxPoints)
 {
-	//Game myGame(numPlayers,maxPoints);
+	Game myGame(numPlayers,maxPoints);
+	while(!myGame.isGameOver())
+	{
+		myGame.playTurn();
+	}
 }
 
 void mainMenu()
@@ -93,7 +96,7 @@ void mainMenu()
 				else if(numPlayers < 1)
 				{
 					std::cout << "          Error: Number of points to win must be at least 1" << std::endl;
-					std::cout << "          Enter number of players: ";
+					std::cout << "          Enter number of points to win: ";
 				}
 				else
 				{

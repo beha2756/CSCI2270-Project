@@ -6,7 +6,8 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include "player.cpp"
+
+#include "player.hpp"
 #include "cardDeck.hpp"
 
 class Game
