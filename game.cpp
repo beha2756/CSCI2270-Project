@@ -152,7 +152,9 @@ void printPlayInfo(int cardCzar, int playing, std::vector<Player> playerVect, in
 
 		if(i == 0)
 			std::cout << "     |";
-		if(i == cardCzar)
+		if(i==cardCzar && playing == -1)
+			std::cout << "   [CHOOSING]  |";
+		else if(i == cardCzar)
 			std::cout << "     [CZAR]    |";
 		else if(i == playing)
 			std::cout << "   [PLAYING]   |";
@@ -467,13 +469,14 @@ void Game::playTurn()
 
 
 			printEndlines(10);
-			std::cout << Players[cardCzar].getPlayerName() << " is the card czar for this round" << std::endl;
+			std::cout << "          " << Players[cardCzar].getPlayerName() << " is the card czar this round" << std::endl;
 			std::cout << std::endl;
-			std::cout << "It is "<< Players[i].getPlayerName() << "'s turn, give them the laptop" << std::endl;
+			std::cout << "          It is "<< Players[i].getPlayerName() << "'s turn, give them the laptop (press ENTER to continue)" << std::endl;
 			getline(std::cin,temp);
 			//Prints the players cards
 			printCards(Players[i].getPlayerCards(), true);
-			std::cout << "Enter the number of the card you would like to play " << std::endl;
+			std::cout << std::endl;
+			std::cout << "          Enter the number of the card you would like to play (1-7): ";
 			getline(std::cin,temp);
 			chosenCardNum = stoi(temp);
 
@@ -483,11 +486,12 @@ void Game::playTurn()
 				// return true;
 			}
 			//Checks for invalid NUMBER inputs
-			while(chosenCardNum > 7 || chosenCardNum <= 0)
+			while(chosenCardNum > 7 || chosenCardNum < 1)
 			{
 				//gets a new number for a card to be played
-				std::cout << "Enter a new number for a card you would like to play, your last choice was invalid" << std::endl;
-				printCards(Players[i].getPlayerCards(), true);
+				std::cout << "          Error: Choice must be integer between 1 and 7" << std::endl;
+				std::cout << "          Enter the number of the card you would like to play (1-7): ";
+				// printCards(Players[i].getPlayerCards(), true);
 				getline(std::cin,temp);
 				chosenCardNum = stoi(temp);
 			}
@@ -499,15 +503,17 @@ void Game::playTurn()
 
 
 	printEndlines(20);
+	printPlayInfo(cardCzar,-1,Players,pointsToWin);
 	printBlackCard(blackCard);
 	printEndlines(10);
 	std::cout << Players[cardCzar].getPlayerName() << " will choose the winning card, give them the laptop" << std::endl;
 	getline(std::cin, temp);
 	//prints the cards that have been played
 	printCards(playedCards, true);
+	std::cout << std::endl;
 
 	//gets the number of the card the card czar chose
-	std::cout << "Enter the number of the winning card with 1 being the first card " << std::endl;
+	std::cout << "          Enter the number of the winning card (1-" << numPlayers-1 <<"): ";
 	getline(std::cin,temp);
 	winningCard = stoi(temp);
 

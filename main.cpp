@@ -144,7 +144,7 @@ void mainMenu()
 
 int main()
 {
-    srand(time(0));
+  srand(time(0));
 	mainMenu();
 
 
