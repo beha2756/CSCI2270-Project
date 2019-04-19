@@ -244,8 +244,18 @@ int Game::getTurnNumber()
 	return turnNumber;
 }
 
-void Game::addPlayer(){
+void Game::addPlayer()
+{
+	for(int i=0; i<numPlayers; i++)
+	{
+		Player newPlayer();
 
+		std::cout << "Enter name for Player " << i+1;
+		std::cin >> playerName;
+		
+		newPlayer.setName(playerName);
+		Players.push_back(newPlayer);
+	}
 }
 
 /*
