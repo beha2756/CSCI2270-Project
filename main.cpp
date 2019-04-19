@@ -32,7 +32,7 @@ void playGame(int numPlayers,int maxPoints)
 {
 
 	Game myGame(numPlayers,maxPoints);
-	std::cout << std::endl;
+
 	//add the players
 	myGame.addPlayers();
 
@@ -124,7 +124,7 @@ void mainMenu()
 					break;
 				}
 			}
-
+			std::cout << std::endl;
 			playGame(numPlayers,maxPoints);
 			break;
 		}

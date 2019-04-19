@@ -506,8 +506,7 @@ void Game::playTurn()
 	printPlayInfo(cardCzar,-1,Players,pointsToWin);
 	printBlackCard(blackCard);
 	printEndlines(10);
-	std::cout << Players[cardCzar].getPlayerName() << " will choose the winning card, give them the laptop" << std::endl;
-	getline(std::cin, temp);
+	std::cout << "          " << Players[cardCzar].getPlayerName() << " will choose the winning card, give them the laptop" << std::endl;
 	//prints the cards that have been played
 	printCards(playedCards, true);
 	std::cout << std::endl;
