@@ -288,7 +288,7 @@ void Game::playTurn()
 	//gets the string of the black card for the turn
 	std::string blackCard = blackCards.dealCard();
 
-	std::cout << Players[cardCzar].getPlayerName() << " is the card czar. They will not play a card this turn" << std::endl;
+	std::cout << Players[cardCzar].getPlayerName() << " is the card czar" << std::endl;
 
 	//runs through all the players
 	for(int i = 0; i < getNumPlayers(); i++){
@@ -299,7 +299,7 @@ void Game::playTurn()
 			//adds the index of the player to the playerNum vector
 			playerNum.push_back(i);
 
-			std::cout << "The black card for this turn is " << blackCard << std::endl;
+			std::cout << "The black card is " << blackCard << std::endl;
 
 			//Prints the players cards
 			printCards(Players[i].getPlayerCards(), true);
@@ -328,7 +328,7 @@ void Game::playTurn()
 	printCards(playedCards, true);
 
 	//gets the number of the card the card czar chose
-	std::cout << "Enter the number of the winning card with 1 being the first card" << std::endl;
+	std::cout << "Enter the number of the winning card with 1 being the first card " << std::endl;
 	getline(std::cin,temp);
 	winningCard = stoi(temp);
 
