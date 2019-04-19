@@ -314,7 +314,7 @@ void Game::playTurn()
 				std::cin >> chosenCardNum;
 			}
 			//adds the chosen card to the played cards vector and also removes that card from the hand
-			playedCards.push_back(Players[i].playCard(chosenCardNum));
+			playedCards.push_back(Players[i].playCard(chosenCardNum - 1));
 		}
 	}
 
