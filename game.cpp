@@ -6,6 +6,13 @@
 
 #include "game.hpp"
 
+void printEndlines(int n)
+{
+	for(int i=0; i<n; i++)
+	{
+		std::cout << std::endl;
+	}
+}
 void printCards(std::vector<std::string> inputVector, bool includeNumbers)
 {
 	/*
@@ -400,7 +407,7 @@ void Game::addPlayers()
 	{
 		Player newPlayer;
 		std::string playerName;
-		std::cout << "Enter name for Player " << i+1 << ": ";
+		std::cout << "          Enter name for Player " << i+1 << ": ";
 		getline(std::cin,playerName);
 
 		newPlayer.setName(playerName);
@@ -413,14 +420,13 @@ Purpose: Simulates one turn of the game
 Parameters: None
 Return: None
 */
-void Game::playTurn()
+bool Game::playTurn()
 {
 	//gets the index of the card czar
 	std::string temp;
 	int cardCzar = getTurnNumber() % getNumPlayers();
 	std::string chosenCard;
-	int chosenCardNum;
-	std::string winningCard;
+	int chosenCardNum,winningCard;
 
 	//vector of the index of each player who plays a card
 	std::vector <int> playerNum;
@@ -431,7 +437,7 @@ void Game::playTurn()
 	//gets the string of the black card for the turn
 	std::string blackCard = blackCards.dealCard();
 
-	std::cout << Players[cardCzar].getPlayerName() << " is the card czar" << std::endl;
+
 
 	//runs through all the players
 	for(int i = 0; i < getNumPlayers(); i++){
@@ -441,28 +447,29 @@ void Game::playTurn()
 
 			//adds the index of the player to the playerNum vector
 			playerNum.push_back(i);
-
-<<<<<<< HEAD
-			std::cout << "The black card for this turn is " << blackCard << std::endl;
 			//Print player info
+			printEndlines(20);
 			printPlayInfo(cardCzar,i,Players,pointsToWin);
 			//print the black card for the round
 			printBlackCard(blackCard);
-=======
-			std::cout << "The black card is " << blackCard << std::endl;
->>>>>>> f903db7692d75afc8448ca599e9fb2624caed843
 
-			for(int i=0; i<15; i++)
-			{
-				std::cout << std::endl;
-			}
+
+			printEndlines(10);
+			std::cout << Players[cardCzar].getPlayerName() << " is the card czar for this round" << std::endl;
+			std::cout << std::endl;
+			std::cout << "It is "<< Players[i].getPlayerName() << "'s turn, give them the laptop" << std::endl;
+			getline(std::cin,temp);
 			//Prints the players cards
 			printCards(Players[i].getPlayerCards(), true);
-
 			std::cout << "Enter the number of the card you would like to play " << std::endl;
 			getline(std::cin,temp);
 			chosenCardNum = stoi(temp);
 
+			//exit condition
+			if(chosenCardNum == 9)
+			{
+				return true;
+			}
 			//Checks for invalid NUMBER inputs
 			while(chosenCardNum > 7 || chosenCardNum <= 0)
 			{
@@ -473,12 +480,17 @@ void Game::playTurn()
 				chosenCardNum = stoi(temp);
 			}
 			//adds the chosen card to the played cards vector and also removes that card from the hand
-			playedCards.push_back(Players[i].playCard(chosenCardNum));
+			playedCards.push_back(Players[i].playCard(chosenCardNum-1));
 		}
+		return false;
 	}
 
-	std::cout << "Pass the computer to " << Players[cardCzar].getPlayerName() << "." << std::endl;
 
+	printEndlines(20);
+	printBlackCard(blackCard);
+	printEndlines(10);
+	std::cout << Players[cardCzar].getPlayerName() << " will choose the winning card, give them the laptop" << std::endl;
+	getline(std::cin, temp);
 	//prints the cards that have been played
 	printCards(playedCards, true);
 
@@ -488,10 +500,12 @@ void Game::playTurn()
 	winningCard = stoi(temp);
 
 	//prints out the name of the winning player
-	std::cout << Players[playerNum[stoi(winningCard) - 1]].getPlayerName() << " won this round" << std::endl;
+	std::cout << Players[playerNum[winningCard - 1]].getPlayerName() << " won this round" << std::endl;
+	//awards the player a points
+	Players[playerNum[winningCard - 1]].addPoint();
 
 	//adds the winning pair to the winning players winning pair struct
-	Players[playerNum[stoi(winningCard) - 1]].addWinningPair(blackCard, playedCards[stoi(winningCard) - 1]);
+	Players[playerNum[winningCard - 1]].addWinningPair(blackCard, playedCards[winningCard - 1]);
 
 	incrementTurnNumber();
 

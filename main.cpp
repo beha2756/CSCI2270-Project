@@ -32,21 +32,27 @@ void playGame(int numPlayers,int maxPoints)
 {
 
 	Game myGame(numPlayers,maxPoints);
+	printLine('=',211,1);
 	//add the players
 	myGame.addPlayers();
+
+
 	//deal the first hand
 	myGame.dealHands(7,-1);
 	//loops while game is running
-	while(true)
+	bool exit = false;
+	while(!exit)
 	{
 		//plays a turn
-		myGame.playTurn();
+		exit = myGame.playTurn();
 		//breaks if game is over
 		if(myGame.isGameOver())
-			break;
+		{
+			exit = true;
+		}
 	}
 	//after game ends
-	
+
 
 }
 
@@ -67,6 +73,7 @@ void mainMenu()
 
 	int choice;
 
+
 	//Check for correct input
 	while(getline(std::cin,temp))
 	{
@@ -77,7 +84,7 @@ void mainMenu()
 			std::cout << "          Invalid input. Please enter a number between 1 and 3." << std::endl;
 			std::cout << "          Enter choice: ";
 	}
-
+	printLine('=',211,1);
 	switch (choice)
 	{
 		case 1: // new game
@@ -91,9 +98,9 @@ void mainMenu()
 					std::cout << "          Error: Input must be integer"  << std::endl;
 					std::cout << std::endl << "          Enter number of players ( Minimum: 3): ";
 				}
-				else if(numPlayers < 3)
+				else if(numPlayers < 3 || numPlayers > 8)
 				{
-					std::cout << "          Error: Game must have at least 3 players" << std::endl;
+					std::cout << "          Error: Game must have 3-8 players" << std::endl;
 					std::cout << std::endl << "          Enter number of players ( Minimum: 3): ";
 				}
 				else
@@ -120,6 +127,7 @@ void mainMenu()
 					break;
 				}
 			}
+
 			playGame(numPlayers,maxPoints);
 			break;
 		}
