@@ -42,6 +42,7 @@ void playGame(int numPlayers,int maxPoints)
 
 void mainMenu()
 {
+	std::string temp;
 	int numPlayers;
 	int maxPoints = 5;
 
@@ -57,9 +58,10 @@ void mainMenu()
 	int choice;
 
 	//Check for correct input
-	while(std::cin >> choice)
+	while(getline(std::cin,temp))
 	{
-		if(std::cin && choice >= 1 && choice <= 3)
+		choice = stoi(temp);
+		if(choice >= 1 && choice <= 3)
 			break;
 		else
 			std::cout << "          Invalid input. Please enter a number between 1 and 3." << std::endl;
@@ -71,8 +73,9 @@ void mainMenu()
 		case 1: // new game
 		{
 			std::cout << std::endl << "          Enter number of players ( Minimum: 3 ): ";
-			while(std::cin >> numPlayers)
+			while(getline(std::cin,temp))
 			{
+				numPlayers = stoi(temp);
 				if(!std::cin)
 				{
 					std::cout << "          Error: Input must be integer"  << std::endl;
@@ -89,8 +92,9 @@ void mainMenu()
 				}
 			}
 			std::cout << "          Enter number of points to win: ";
-			while(std::cin >> numPlayers)
+			while(getline(std::cin,temp))
 			{
+				maxPoints = stoi(temp);
 				if(!std::cin)
 				{
 					std::cout << "          Error: Input must be integer"  << std::endl;
