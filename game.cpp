@@ -5,7 +5,10 @@
 #include <vector>
 
 #include "game.hpp"
+void printBlackCard(std::string blackCardText)
+{
 
+}
 void printCards(std::vector<std::string> inputVector, bool includeNumbers)
 {
 	/*
@@ -277,7 +280,7 @@ void Game::playTurn()
 	int cardCzar = getTurnNumber() % getNumPlayers();
 	std::string chosenCard;
 	int chosenCardNum;
-	std::string winningCard;
+	int winningCard;
 
 	//vector of the index of each player who plays a card
 	std::vector <int> playerNum;
@@ -333,10 +336,10 @@ void Game::playTurn()
 	winningCard = stoi(temp);
 
 	//prints out the name of the winning player
-	std::cout << Players[playerNum[stoi(winningCard) - 1]].getPlayerName() << "won this round" << std::endl;
+	std::cout << Players[playerNum[winningCard - 1]].getPlayerName() << "won this round" << std::endl;
 
 	//adds the winning pair to the winning players winning pair struct
-	Players[playerNum[stoi(winningCard) - 1]].addWinningPair(blackCard, playedCards[stoi(winningCard) - 1]);
+	Players[playerNum[winningCard - 1]].addWinningPair(blackCard, playedCards[winningCard - 1]);
 
 	incrementTurnNumber();
 
