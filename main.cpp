@@ -30,8 +30,10 @@ void printLine(char c, int n, bool endline)
 
 void playGame(int numPlayers,int maxPoints)
 {
+
 	Game myGame(numPlayers,maxPoints);
-	while(!myGame.isGameOver())
+	std::cout << "Test" << std::endl;
+	while(true)
 	{
 		myGame.playTurn();
 	}
@@ -103,7 +105,6 @@ void mainMenu()
 					break;
 				}
 			}
-
 			playGame(numPlayers,maxPoints);
 			break;
 		}

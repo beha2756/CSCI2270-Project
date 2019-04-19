@@ -114,6 +114,9 @@ Game::Game(int numPlayers, int maxPoints)
 	this->numPlayers = numPlayers;
 	pointsToWin = maxPoints;
 	turnNumber = 0;
+
+	getWhiteDeck("whiteCards.txt");
+	getBlackDeck("blackCards.txt");
 }
 
 /*
@@ -203,6 +206,7 @@ bool Game::isGameOver()
 		std::cout << "There are not enough white cards for another hand" << std::endl;
 		return true;
 	}
+	return false;
 }
 
 /*
