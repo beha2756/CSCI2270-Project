@@ -248,10 +248,10 @@ void Game::addPlayers()
 {
 	for(int i=0; i<numPlayers; i++)
 	{
-		Player newPlayer();
-
+		Player newPlayer;
+		std::string playerName;
 		std::cout << "Enter name for Player " << i+1;
-		std::cin >> playerName;
+		getline(std::cin,playerName);
 
 		newPlayer.setName(playerName);
 		Players.push_back(newPlayer);
