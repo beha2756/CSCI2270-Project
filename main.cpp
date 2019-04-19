@@ -32,7 +32,7 @@ void playGame(int numPlayers,int maxPoints)
 {
 
 	Game myGame(numPlayers,maxPoints);
-	printLine('=',211,1);
+	//printLine('=',150,1);
 	//add the players
 	myGame.addPlayers();
 
@@ -60,7 +60,7 @@ void mainMenu()
 	int maxPoints = 5;
 
 	disp("logo.txt");
-	printLine('=',211,1);
+	//printLine('=',150,1);
 	std::cout << "          ====[ MAIN MENU ] ====" << std::endl <<std::endl;
 	std::cout << "          [ 1 ] New Game" << std::endl;
 	std::cout << "          [ 2 ] --------" << std::endl;
@@ -81,7 +81,7 @@ void mainMenu()
 			std::cout << "          Invalid input. Please enter a number between 1 and 3." << std::endl;
 			std::cout << "          Enter choice: ";
 	}
-	printLine('=',211,1);
+	//printLine('=',150,1);
 	switch (choice)
 	{
 		case 1: // new game
