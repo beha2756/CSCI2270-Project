@@ -12,7 +12,7 @@ void printCards(std::vector<std::string> inputVector, bool includeNumbers)
 	Parameters: Vector of strings (cards), number of cards to print, and whether or not to number the cards
 	Returns: None
 	*/
-	numCards = inputVector.size();
+	int numCards = inputVector.size();
 	std::string temp1;
 	std::vector<int> currentLineLength(numCards);
 	int maxLineLength = 15;
@@ -244,6 +244,10 @@ int Game::getTurnNumber()
 	return turnNumber;
 }
 
+void Game::addPlayer(){
+
+}
+
 /*
 Purpose: Simulates one turn of the game
 Parameters: None
@@ -312,7 +316,7 @@ void Game::playTurn()
 	std::cout << Players[playerNum[stoi(winningCard) - 1]].getPlayerName() << "won this round" << std::endl;
 
 	//adds the winning pair to the winning players winning pair struct
-	Player[playerNum[stoi(winningCard) - 1]].winningPair(blackCard, playedCards[stoi(winningCard) - 1]);
+	Players[playerNum[stoi(winningCard) - 1]].addWinningPair(blackCard, playedCards[stoi(winningCard) - 1]);
 
 	incrementTurnNumber();
 
