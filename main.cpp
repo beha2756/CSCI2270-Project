@@ -1,5 +1,6 @@
 #include <string>
-#include <queue>
+#include <ctime>
+#include <cstdlib>
 #include <vector>
 #include <iostream>
 #include <fstream>
@@ -119,6 +120,7 @@ void mainMenu()
 
 int main()
 {
+    srand(time(0));
 	mainMenu();
 
 

@@ -1,7 +1,9 @@
-
-#include <cstdlib>
 #include <string>
+#include <cstdlib>
 #include <iostream>
+#include <vector>
+#include <algorithm>
+#include <random>
 #include "cardDeck.hpp"
 
 // default constructor
@@ -50,14 +52,20 @@ void CardDeck::addToDeck(std::string cardData){
     deck.push_back(cardData);
 }
 
-
-
 /*
 function: shuffleDeck
-purpose: shuffles the deck using Fisher-Yates algorithm
+purpose: shuffles the deck using std::shuffle
 parameters: none
 return: none
 */
 void CardDeck::shuffleDeck(){
-
+    std::vector<std::string> shuffleVec;
+    for(int i = 0; i < deck.size(); i++){
+        shuffleVec.push_back(dealCard());
+    }
+    unsigned int seed = rand();
+    shuffle(shuffleVec.begin(), shuffleVec.end(), std::default_random_engine(seed));
+    for(int i = 0; i < shuffleVec.size(); i++){
+        addToDeck(shuffleVec[i]);
+    }
 }
