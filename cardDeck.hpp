@@ -34,7 +34,7 @@ public:
 
     /*
     function: shuffleDeck
-    purpose: shuffles the deck using Fisher-Yates algorithm
+    purpose: shuffles the deck using std::shuffle
     parameters: none
     return: none
     */
