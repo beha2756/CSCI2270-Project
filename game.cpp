@@ -420,7 +420,7 @@ void Game::playTurn()
 	int cardCzar = getTurnNumber() % getNumPlayers();
 	std::string chosenCard;
 	int chosenCardNum;
-	int winningCard;
+	std::string winningCard;
 
 	//vector of the index of each player who plays a card
 	std::vector <int> playerNum;
@@ -431,7 +431,7 @@ void Game::playTurn()
 	//gets the string of the black card for the turn
 	std::string blackCard = blackCards.dealCard();
 
-	std::cout << Players[cardCzar].getPlayerName() << " is the card czar. They will not play a card this turn" << std::endl;
+	std::cout << Players[cardCzar].getPlayerName() << " is the card czar" << std::endl;
 
 	//runs through all the players
 	for(int i = 0; i < getNumPlayers(); i++){
@@ -442,11 +442,15 @@ void Game::playTurn()
 			//adds the index of the player to the playerNum vector
 			playerNum.push_back(i);
 
+<<<<<<< HEAD
 			std::cout << "The black card for this turn is " << blackCard << std::endl;
 			//Print player info
 			printPlayInfo(cardCzar,i,Players,pointsToWin);
 			//print the black card for the round
 			printBlackCard(blackCard);
+=======
+			std::cout << "The black card is " << blackCard << std::endl;
+>>>>>>> f903db7692d75afc8448ca599e9fb2624caed843
 
 			for(int i=0; i<15; i++)
 			{
@@ -469,7 +473,7 @@ void Game::playTurn()
 				chosenCardNum = stoi(temp);
 			}
 			//adds the chosen card to the played cards vector and also removes that card from the hand
-			playedCards.push_back(Players[i].playCard(chosenCardNum - 1));
+			playedCards.push_back(Players[i].playCard(chosenCardNum));
 		}
 	}
 
@@ -479,15 +483,15 @@ void Game::playTurn()
 	printCards(playedCards, true);
 
 	//gets the number of the card the card czar chose
-	std::cout << "Enter the number of the winning card with 1 being the first card" << std::endl;
+	std::cout << "Enter the number of the winning card with 1 being the first card " << std::endl;
 	getline(std::cin,temp);
 	winningCard = stoi(temp);
 
 	//prints out the name of the winning player
-	std::cout << Players[playerNum[winningCard - 1]].getPlayerName() << "won this round" << std::endl;
+	std::cout << Players[playerNum[stoi(winningCard) - 1]].getPlayerName() << " won this round" << std::endl;
 
 	//adds the winning pair to the winning players winning pair struct
-	Players[playerNum[winningCard - 1]].addWinningPair(blackCard, playedCards[winningCard - 1]);
+	Players[playerNum[stoi(winningCard) - 1]].addWinningPair(blackCard, playedCards[stoi(winningCard) - 1]);
 
 	incrementTurnNumber();
 
