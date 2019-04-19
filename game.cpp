@@ -5,13 +5,14 @@
 #include <vector>
 #include "game.hpp"
 
-void printCards(std::vector<std::string> inputVector, int numCards, bool includeNumbers)
+void printCards(std::vector<std::string> inputVector, bool includeNumbers)
 {
 	/*
 	Purpose: Takes in a vector of strings, where each string represents a card, and prints them
 	Parameters: Vector of strings (cards), number of cards to print, and whether or not to number the cards
 	Returns: None
 	*/
+	numCards = inputVector.size();
 	std::string temp1;
 	std::vector<int> currentLineLength(numCards);
 	int maxLineLength = 15;
