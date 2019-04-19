@@ -232,13 +232,14 @@ void Game::playTurn()
 	dealHands(1, cardCzar);
 }
 
-void printCards(std::vector<std::string> inputVector, int numCards, bool includeNumbers)
+void printCards(std::vector<std::string> inputVector, bool includeNumbers)
 {
 	/*
-	Purpose: Takes in a vector of strings, where each string represents a card, and prints them
+	Purpose: Takes in a vector of strings, where each string represents a card, and prints them to console
 	Parameters: Vector of strings (cards), number of cards to print, and whether or not to number the cards
 	Returns: None
 	*/
+	int numCards = inputVector.size();
 	std::string temp1;
 	std::vector<int> currentLineLength(numCards);
 	int maxLineLength = 15;
