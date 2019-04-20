@@ -71,7 +71,7 @@ public:
   Parameters: None
   Return: None
   */
-void playTurn();
+bool playTurn();
 
   /*
   Purpose: increments the turn counter
@@ -86,6 +86,13 @@ void playTurn();
   Return: Turn number
   */
   int getTurnNumber();
+
+	/*
+  Purpose: Prints each player's winning cards to console
+  Parameters:
+  Return: None
+  */
+	void printWinningCards();
 
 private:
   int pointsToWin;

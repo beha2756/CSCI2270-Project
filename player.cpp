@@ -30,7 +30,10 @@ void Player::printWinningCards()
 	Parameters: None
 	Returns:	None
 	*/
-	std::cout << name << "'s Winning Cards:" << std::endl;
+
+	if(winningPairs.size() == 0) return;
+
+	std::cout << name << "'s Winning Cards:" << std::endl <<std::endl;
 	for(int i=0; i<winningPairs.size();i++)
 	{
 		std::cout << "Black Card: "<< winningPairs[i].blackCard << std::endl;
@@ -98,7 +101,7 @@ std::string Player::playCard(int cardNum)
 	Returns: String from card
 	*/
 	std::string cardText = cards[cardNum];
-	cards.erase(cards.begin()+cardNum-1);
+	cards.erase(cards.begin()+cardNum);
 	return cardText;
 }
 

@@ -49,7 +49,7 @@ void playGame(int numPlayers,int maxPoints)
 		if(myGame.isGameOver()) break;
 	}
 	//after game ends
-
+	myGame.printWinningCards();
 
 }
 
@@ -58,6 +58,7 @@ void mainMenu()
 	std::string temp;
 	int numPlayers;
 	int maxPoints = 5;
+	int choice;
 
 	disp("logo.txt");
 	std::cout << std::endl;
@@ -68,7 +69,7 @@ void mainMenu()
 	std::cout << std::endl;
 	std::cout << "          Enter choice: ";
 
-	int choice;
+
 
 
 	//Check for correct input
@@ -82,6 +83,10 @@ void mainMenu()
 			std::cout << "          Enter choice: ";
 	}
 	std::cout << std::endl;
+
+
+
+
 	switch (choice)
 	{
 		case 1: // new game
@@ -128,12 +133,12 @@ void mainMenu()
 			playGame(numPlayers,maxPoints);
 			break;
 		}
-		case 2:
+		case 2: // deck building
 		{
 			break;
 		}
 
-		case 3:
+		case 3: // exit
 		{
 			std::cout << std::endl << "          Exited Program" << std::endl;
 			break;

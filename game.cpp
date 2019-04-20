@@ -3,9 +3,82 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <math.h>
 
 #include "game.hpp"
 
+void Game::printWinningCards()
+{
+	for(int i=0; i<numPlayers; i++)
+	{
+		Players[i].printWinningCards();
+	}
+}
+
+/*
+Purpose: Print a pop up message the console
+Parameters: string for first line, string for second line
+Return: None
+*/
+void printPopUp(std::string message1, std::string message2)
+{
+	for(int i=0; i<10; i++)
+	{
+		float temp,numSpaces;
+
+		for(int j=0; j<60; j++)
+		{
+			std::cout << " ";
+		}
+		if(i == 1)
+			std::cout << "|#===============================================#|";
+		else if(i == 2)
+			std::cout << "|#                                               #|";
+		else if(i == 3)
+		{
+			temp = 47 - message1.size();
+			numSpaces = temp/2;
+
+			std::cout << "|#";
+			for(int j=0; j<floor(numSpaces); j++)
+			{
+				std::cout << " ";
+			}
+			std::cout << message1;
+			for(int j=0; j<ceil(numSpaces); j++)
+			{
+				std::cout << " ";
+			}
+			std::cout << "#|";
+		}
+
+
+		else if(i == 4)
+			std::cout << "|#                                               #|";
+		else if(i == 5)
+		{
+			temp = 47 - message2.size();
+			numSpaces = temp/2;
+
+			std::cout << "|#";
+			for(int j=0; j<floor(numSpaces); j++)
+			{
+				std::cout << " ";
+			}
+			std::cout << message2;
+			for(int j=0; j<ceil(numSpaces); j++)
+			{
+				std::cout << " ";
+			}
+			std::cout << "#|";
+		}
+		else if(i == 6)
+			std::cout << "|#                                               #|";
+		else if(i == 7)
+			std::cout << "|#===============================================#|";
+		std::cout << std::endl;
+	}
+}
 /*
 Purpose: Print endlines to the console
 Parameters: number of endlines to print
@@ -354,22 +427,43 @@ Return: None
 */
 bool Game::isGameOver()
 {
-	for(int i = 0; i < getNumPlayers(); i++)
+	for(int i = 0; i < numPlayers; i++)
 	{
 		if(Players[i].getPlayerPoints() == getNumPointsToWin())
 		{
-			std::cout << "Game is over because " << Players[i].getPlayerName() << " has " << getNumPointsToWin() << " points" << std::endl;
+			std::string message1 = Players[i].getPlayerName() + " reached maximum number of points!";
+			std::string message2 = Players[i].getPlayerName() + " has won!";
+
+			printPopUp(message1,message2);
+
 			return true;
 		}
 	}
+
+	int winningPlayerNum;
+	int currentMax = 0;
+
+	for(int i=0; i<numPlayers; i++)
+	{
+		if(Players[i].getPlayerPoints() > currentMax)
+		{
+			currentMax = Players[i].getPlayerPoints();
+			winningPlayerNum = i;
+		}
+	}
+
 	if(blackCards.getDeckSize() == 0)
 	{
-		std::cout << "The black card deck is out of cards" << std::endl;
+		std::string message1 = "No more black cards left to play!";
+		std::string message2 = Players[winningPlayerNum].getPlayerName() + " has won!";
+
+		printPopUp(message1,message2);
 		return true;
 	}
 	if(whiteCards.getDeckSize() < getNumPlayers())
 	{
-		std::cout << "There are not enough white cards for another hand" << std::endl;
+		std::string message1 = "Not enough white cards to deal another hand!";
+		std::string message2 =  Players[winningPlayerNum].getPlayerName() + " has won!";
 		return true;
 	}
 	return false;
@@ -434,7 +528,7 @@ Purpose: Simulates one turn of the game
 Parameters: None
 Return: None
 */
-void Game::playTurn()
+bool Game::playTurn()
 {
 	//gets the index of the card czar
 	std::string temp;
@@ -483,7 +577,7 @@ void Game::playTurn()
 			//exit condition
 			if(chosenCardNum == 9)
 			{
-				// return true;
+				return true;
 			}
 			//Checks for invalid NUMBER inputs
 			while(chosenCardNum > 7 || chosenCardNum < 1)
