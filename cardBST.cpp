@@ -9,7 +9,7 @@ CardTree::CardTree(){
 }
 
 //destructor
-~CardTree(){
+CardTree::~CardTree(){
 
 }
 
@@ -33,12 +33,12 @@ cardNode* searchHelper(cardNode *node, std::string keyword){
 }
 
 // returns a pointer to a node containing the card with the keyword
-cardNode* searchDeck(std::string keyword){
+cardNode* CardTree::searchDeck(std::string keyword){
     return searchHelper(root, keyword);
 }
 
 // add a new card to the deck
-void addCard(std::string text, std::string keyword);
+void CardTree::addCard(std::string text, std::string keyword){}
 
 // writes the cards to a file in alphabetical order (by keyword) again in case there are new cards added
-void writeTreeToFile(std::string filename);
+void CardTree::writeTreeToFile(std::string filename){}
