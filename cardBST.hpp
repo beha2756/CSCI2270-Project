@@ -26,7 +26,7 @@ public:
     // returns a pointer to a node containing the card with the keyword
     cardNode* searchDeck(std::string keyword);
     // add a new card to the deck
-    void addCard(std::string text);
+    void addCard(std::string text, std::string keyword);
     // writes the cards to a file again (by keyword) in case there are new cards added
     void writeTreeToFile(std::string filename);
 private:
