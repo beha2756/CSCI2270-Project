@@ -30,5 +30,5 @@ public:
     // writes the cards to a file again (by keyword) in case there are new cards added
     void writeTreeToFile(std::string filename);
 private:
-    cardNree *root;
+    cardNode *root;
 };
