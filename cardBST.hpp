@@ -30,5 +30,8 @@ public:
     // writes the cards to a file again (by keyword) in case there are new cards added
     void writeTreeToFile(std::string filename);
 private:
+    // helper function to facilitate recursion for adding cards
+    cardNode* addCardHelper(std::string text, std::string keyword, cardNode *node);
+
     cardNode *root;
 };
