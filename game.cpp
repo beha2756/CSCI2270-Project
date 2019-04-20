@@ -7,6 +7,7 @@
 
 #include "game.hpp"
 
+
 void Game::printWinningCards()
 {
 	for(int i=0; i<numPlayers; i++)
@@ -20,7 +21,7 @@ Purpose: Print a pop up message the console
 Parameters: string for first line, string for second line
 Return: None
 */
-void printPopUp(std::string message1, std::string message2)
+void printPopUp(std::string message1, std::string message2, std::string message3)
 {
 	for(int i=0; i<10; i++)
 	{
@@ -54,8 +55,6 @@ void printPopUp(std::string message1, std::string message2)
 
 
 		else if(i == 4)
-			std::cout << "|#                                               #|";
-		else if(i == 5)
 		{
 			temp = 47 - message2.size();
 			numSpaces = temp/2;
@@ -66,6 +65,23 @@ void printPopUp(std::string message1, std::string message2)
 				std::cout << " ";
 			}
 			std::cout << message2;
+			for(int j=0; j<ceil(numSpaces); j++)
+			{
+				std::cout << " ";
+			}
+			std::cout << "#|";
+		}
+		else if(i == 5)
+		{
+			temp = 47 - message3.size();
+			numSpaces = temp/2;
+
+			std::cout << "|#";
+			for(int j=0; j<floor(numSpaces); j++)
+			{
+				std::cout << " ";
+			}
+			std::cout << message3;
 			for(int j=0; j<ceil(numSpaces); j++)
 			{
 				std::cout << " ";
@@ -84,12 +100,23 @@ Purpose: Print endlines to the console
 Parameters: number of endlines to print
 Return: None
 */
+
+
+
 void printEndlines(int n)
 {
 	for(int i=0; i<n; i++)
 	{
 		std::cout << std::endl;
 	}
+}
+
+void printRoundWinner(std::string winnerName)
+{
+	printEndlines(10);
+	std::string print = winnerName + " has won this round!";
+	printPopUp(" ",print," ");
+	printEndlines(10);
 }
 
 /*
@@ -434,8 +461,7 @@ bool Game::isGameOver()
 			std::string message1 = Players[i].getPlayerName() + " reached maximum number of points!";
 			std::string message2 = Players[i].getPlayerName() + " has won!";
 
-			printPopUp(message1,message2);
-
+			printPopUp(message1," ",message2);
 			return true;
 		}
 	}
@@ -457,13 +483,15 @@ bool Game::isGameOver()
 		std::string message1 = "No more black cards left to play!";
 		std::string message2 = Players[winningPlayerNum].getPlayerName() + " has won!";
 
-		printPopUp(message1,message2);
+		printPopUp(message1," ",message2);
 		return true;
 	}
 	if(whiteCards.getDeckSize() < getNumPlayers())
 	{
 		std::string message1 = "Not enough white cards to deal another hand!";
 		std::string message2 =  Players[winningPlayerNum].getPlayerName() + " has won!";
+
+		printPopUp(message1," ",message2);
 		return true;
 	}
 	return false;
@@ -611,7 +639,8 @@ bool Game::playTurn()
 	winningCard = stoi(temp);
 
 	//prints out the name of the winning player
-	std::cout << Players[playerNum[winningCard - 1]].getPlayerName() << " won this round" << std::endl;
+	printRoundWinner(Players[playerNum[winningCard - 1]].getPlayerName());
+	getline(std::cin,temp);
 	//awards the player a points
 	Players[playerNum[winningCard - 1]].addPoint();
 
