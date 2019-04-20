@@ -7,6 +7,8 @@
 
 #include "game.hpp"
 
+void mainMenu();
+
 void disp(std::string filename)
 {
 	std::ifstream myStream(filename);
@@ -50,6 +52,19 @@ void playGame(int numPlayers,int maxPoints)
 	}
 	//after game ends
 	myGame.printWinningCards();
+
+	std::string playAgain;
+	std::cout << "Play again? (y/n): ";
+	getline(std::cin,playAgain);
+
+	if(playAgain[0] == 'y' || playAgain[0] == 'Y')
+	{
+		mainMenu();
+	}
+	else
+	{
+		std::cout << "Exiting program" << std::endl;
+	}
 
 }
 
