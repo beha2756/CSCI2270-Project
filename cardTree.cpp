@@ -85,11 +85,13 @@ void writingHelper(std::ofstream& os, cardNode *node){
     if(node == nullptr) return;
 
     writingHelper(os, node->left);
-    os << node->text << "|" << node->keyword << std::endl;
+
     writingHelper(os, node->right);
+
+    os << node->text << "|" << node->keyword << std::endl;
 }
 
-// writes the cards to a file in alphabetical order (by keyword) again in case there are new cards added
+// writes the cards to a file for future use
 void CardTree::writeTreeToFile(std::string filename){
     std::ofstream outFile;
     outFile.open(filename);
