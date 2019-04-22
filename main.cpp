@@ -213,7 +213,6 @@ void deckBuilding1()
 			mainMenu();
 			break;
 		}
-
 	}
 }
 void deckBuilding2(bool whiteCard)
@@ -239,7 +238,8 @@ void deckBuilding2(bool whiteCard)
 		std::cout << "          [1] Print "<< (whiteCard ? "White" : "Black") <<" Cards" << std::endl;
 		std::cout << "          [2] Add New "<< (whiteCard ? "White" : "Black") <<" Card" << std::endl;
 		std::cout << "          [3] Edit Existing "<< (whiteCard ? "White" : "Black") <<" Card" << std::endl;
-		std::cout << "          [4] Go Back" << std::endl;
+		std::cout << "          [4] Go back without saving" << std::endl;
+		std::cout << "          [5] Save and go back" << std::endl;
 		std::cout << std::endl;
 		std::cout << "          Enter choice: ";
 
@@ -275,9 +275,11 @@ void deckBuilding2(bool whiteCard)
 				deckBuilding1();
 				break;
 			}
-			case 6:
+			case 5:
 			{
-
+				myCardTree.writeTreeToFile(filename);
+				deckBuilding1();
+				break;
 			}
 		}
 	}
