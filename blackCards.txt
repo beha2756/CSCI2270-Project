@@ -1,25 +1,25 @@
-I failed my midterm because ____ | failedMidterm
+I failed my midterm because ____|failedMidterm
 I was late to my final because ____
-last night on the hill I saw the biggest ____ I've ever seen | lateToFinal
-I couldn't go to class because ____ | couldn'tGoToClass
-I can't believe that ____ | can'tBelieve
-Has anyone really ever been as far as to want do more go look like? | hasAnyone
-____ was my favorite part of the semester | favoritePart
-I swear I did my homework, but ____ | iSwear
-I was gonna go to the party but ____ | wannaGoToParty
-____ is the best part of the C4C | bestPartOfC4C
-____ is the worst part of the C4C | worstPartOfC4C
-I walked into my roommate watching ____ | roomateWatching
-I was gonna take a shower but ____ | takeAShowerBut
-____ is a good reason to bring shower shoes | showerShoes
-I spend all my Munch Money on ____ | munchMoney
-Really? ____ | Really?
-Data Structures and ____, name a better combo | combo
-If it weren't for ____, I would've gotten a 4.0 | 4.0
-Even ____ couldn't stop them | coculdn'tStopThem
-On the hill, ____ was unbelievable | unbelievable
-____ will inspire the masses | inspireTheMasses
-I heard ____ hit Chip | chip
-What's the best part of CU Boulder? | bestPartOfCu
-____ made me late to class | lateToClass
-I was late to class after ____ outside the UMC | outsideUMC
+last night on the hill I saw the biggest ____ I've ever seen|lateToFinal
+I couldn't go to class because ____|couldntGoToClass
+I can't believe that ____|cantBelieve
+Has anyone really ever been as far as to want do more go look like?|hasAnyone
+____ was my favorite part of the semester|favoritePart
+I swear I did my homework, but ____|iSwear
+I was gonna go to the party but ____|goToParty
+____ is the best part of the C4C|bestPartOfC4C
+____ is the worst part of the C4C|worstPartOfC4C
+I walked into my roommate watching ____|roomateWatching
+I was gonna take a shower but ____|takeAShowerBut
+____ is a good reason to bring shower shoes|showerShoes
+I spend all my Munch Money on ____|munchMoney
+Really? ____|Really?
+Data Structures and ____, name a better combo|combo
+If it weren't for ____, I would've gotten a 4.0|4.0
+Even ____ couldn't stop them|couldntStopThem
+On the hill, ____ was unbelievable|unbelievable
+____ will inspire the masses|inspireTheMasses
+I heard ____ hit Chip|chip
+What's the best part of CU Boulder?|bestPartOfCu
+____ made me late to class|lateToClass
+I was late to class after ____ outside the UMC|outsideUMC
