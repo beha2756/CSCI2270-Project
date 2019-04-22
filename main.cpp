@@ -128,7 +128,7 @@ void playGame(int numPlayers,int maxPoints)
 	myGame.printWinningCards();
 
 	std::string playAgain;
-	std::cout << "Play again? (y/n): ";
+	std::cout << "          Play again? (y/n): ";
 	getline(std::cin,playAgain);
 
 	if(playAgain[0] == 'y' || playAgain[0] == 'Y')
@@ -146,11 +146,10 @@ void deckBuilding1()
 {
 	std::string temp;
 	int choice;
-
-	std::cout << "          ====[ BUILD DECK ] ====" << std::endl <<std::endl;
-	std::cout << "          [ 1 ] White Cards" << std::endl;
-	std::cout << "          [ 2 ] Black Cards" << std::endl;
-	std::cout << "          [ 3 ] Main Menu" << std::endl;
+	std::cout << "          === [ MODIFY CARDS ] ===" << std::endl <<std::endl;
+	std::cout << "          [1] White Cards" << std::endl;
+	std::cout << "          [2] Black Cards" << std::endl;
+	std::cout << "          [3] Main Menu" << std::endl;
 	std::cout << std::endl;
 	std::cout << "          Enter choice: ";
 
@@ -202,11 +201,11 @@ void deckBuilding2(bool whiteCard)
 	int choice = 0;
 	while(choice != 4)
 	{
-		std::cout << "          ====[ BUILD DECK ] ====" << std::endl <<std::endl;
-		std::cout << "          [ 1 ] Print "<< (whiteCard ? "White" : "Black") <<" Cards" << std::endl;
-		std::cout << "          [ 2 ] Add New "<< (whiteCard ? "White" : "Black") <<" Card" << std::endl;
-		std::cout << "          [ 3 ] Edit Existing "<< (whiteCard ? "White" : "Black") <<" Card" << std::endl;
-		std::cout << "          [ 4 ] Go Back" << std::endl;
+		std::cout << std::endl <<std::endl;
+		std::cout << "          [1] Print "<< (whiteCard ? "White" : "Black") <<" Cards" << std::endl;
+		std::cout << "          [2] Add New "<< (whiteCard ? "White" : "Black") <<" Card" << std::endl;
+		std::cout << "          [3] Edit Existing "<< (whiteCard ? "White" : "Black") <<" Card" << std::endl;
+		std::cout << "          [4] Go Back" << std::endl;
 		std::cout << std::endl;
 		std::cout << "          Enter choice: ";
 
@@ -260,10 +259,10 @@ void mainMenu()
 
 	disp("logo.txt");
 	std::cout << std::endl;
-	std::cout << "          ====[ MAIN  MENU ] ====" << std::endl <<std::endl;
-	std::cout << "          [ 1 ] New Game" << std::endl;
-	std::cout << "          [ 2 ] Add or Modify Cards" << std::endl;
-	std::cout << "          [ 3 ] Exit" << std::endl;
+	std::cout << "          ==== [ MAIN  MENU ] ====" << std::endl <<std::endl;
+	std::cout << "          [1] New Game" << std::endl;
+	std::cout << "          [2] Add or Modify Cards" << std::endl;
+	std::cout << "          [3] Exit" << std::endl;
 	std::cout << std::endl;
 	std::cout << "          Enter choice: ";
 

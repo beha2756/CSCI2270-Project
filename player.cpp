@@ -33,11 +33,12 @@ void Player::printWinningCards()
 
 	if(winningPairs.size() == 0) return;
 
-	std::cout << name << "'s Winning Cards:" << std::endl <<std::endl;
+	std::cout << "======[ "<< name << "'s Winning Cards ]======" << std::endl <<std::endl;
 	for(int i=0; i<winningPairs.size();i++)
 	{
-		std::cout << "Black Card: "<< winningPairs[i].blackCard << std::endl;
-		std::cout << "White Card:"<< winningPairs[i].whiteCard << std::endl;
+		std::cout << "(" << i+1 << ") " << "Black Card: "<< winningPairs[i].blackCard << std::endl;
+		std::cout << "(" << i+1 << ") " << "White Card: "<< winningPairs[i].whiteCard << std::endl;
+		std::cout << std::endl;
 	}
 
 }
