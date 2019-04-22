@@ -246,7 +246,7 @@ void deckBuilding2(bool whiteCard)
 		while(getline(std::cin,temp))
 		{
 			choice = stoi(temp);
-			if(choice >= 1 && choice <= 4)
+			if(choice >= 1 && choice <= 5)
 				break;
 			else
 				std::cout << "          Invalid input. Please enter a number between 1 and 4." << std::endl;
