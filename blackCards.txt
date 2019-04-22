@@ -1,6 +1,6 @@
 I failed my midterm because ____|failedMidterm
-I was late to my final because ____
-last night on the hill I saw the biggest ____ I've ever seen|lateToFinal
+I was late to my final because ____|lateToFinal
+last night on the hill I saw the biggest ____ I've ever seen|sawOnHill
 I couldn't go to class because ____|couldntGoToClass
 I can't believe that ____|cantBelieve
 Has anyone really ever been as far as to want do more go look like?|hasAnyone
