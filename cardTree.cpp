@@ -30,7 +30,7 @@ void printCardHelper(cardNode* node){
 			std::cout << " ";
 		}
 		std::cout << "|";
-    std::cout << "     " << node->text << std::endl;
+    std::cout << " " << node->text << std::endl;
     printCardHelper(node->right);
 }
 
