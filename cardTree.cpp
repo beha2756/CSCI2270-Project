@@ -24,13 +24,21 @@ void printCardHelper(cardNode* node){
     if(node == nullptr) return;
 
     printCardHelper(node->left);
-    std::cout << "Keyword: " << node->keyword << std::endl;
+    std::cout << "| "<< node->keyword;
+		for(int i= (node->keyword).size(); i<30; i++)
+		{
+			std::cout << " ";
+		}
+		std::cout << "|";
     std::cout << "     " << node->text << std::endl;
     printCardHelper(node->right);
 }
 
 // prints all cards in alphabetical order by keyword
 void CardTree::printAllCards(){
+		std::cout << "           KEYWORD            ";
+		std::cout << "                                 CARD TEXT";
+		std::cout << std::endl << std::endl;
     printCardHelper(root);
 }
 
