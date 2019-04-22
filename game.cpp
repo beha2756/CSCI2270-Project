@@ -600,7 +600,7 @@ bool Game::playTurn()
 			//Prints the players cards
 			printCards(Players[i].getPlayerCards(), true);
 			std::cout << std::endl;
-			std::cout << "          Enter the number of the card you would like to play (1-7): ";
+			std::cout << "          Enter the card you would like to play (1-7) or 0 to return to main menu: ";
 			getline(std::cin,temp);
 			chosenCardNum = stoi(temp);
 
