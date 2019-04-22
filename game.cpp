@@ -394,8 +394,9 @@ void Game::getWhiteDeck(std::string fileName)
 {
 	std::string card;
 	std::ifstream whiteCardsStream(fileName);
-	while(getline(whiteCardsStream,card)){
+	while(getline(whiteCardsStream,card,'|')){
 		whiteCards.addToDeck(card);
+		getline(whiteCardsStream,card);
 	}
 }
 
@@ -408,8 +409,9 @@ void Game::getBlackDeck(std::string fileName)
 {
 	std::string card;
 	std::ifstream blackCardsStream(fileName);
-	while(getline(blackCardsStream,card)){
+	while(getline(blackCardsStream,card,'|')){
 		blackCards.addToDeck(card);
+		getline(blackCardsStream,card);
 	}
 }
 
