@@ -114,8 +114,8 @@ void editCard(CardTree& ct){
 }
 
 void mainMenu();
-void deckBuilding1();
-void deckBuilding2(bool whiteCard);
+void chooseDeckToModify();
+void modifyDeck(bool whiteCard);
 
 void disp(std::string filename)
 {
@@ -142,45 +142,52 @@ void playGame(int numPlayers,int maxPoints)
 {
 
 	Game myGame(numPlayers,maxPoints);
-
-	//add the players
 	myGame.addPlayers();
-
-
-	//deal the first hand
 	myGame.dealHands(7,-1);
-	//loops while game is running
 
-	while(true)
+	//loops while game is running
+	bool gameIsRunning = true;
+	while(gameIsRunning)
 	{
 		//plays a turn
-		myGame.playTurn();
+		gameIsRunning = myGame.playTurn();
 		//breaks if game is over
 		if(myGame.isGameOver()) break;
 	}
 	//after game ends
-	myGame.printWinningCards();
 
-	std::string playAgain;
-	std::cout << "          Play again? (y/n): ";
-	getline(std::cin,playAgain);
-
-	if(playAgain[0] == 'y' || playAgain[0] == 'Y')
+	if(gameIsRunning)
 	{
-		mainMenu();
+		myGame.printWinningCards();
+		std::string playAgain;
+		std::cout << "          Play again? (y/n): ";
+		getline(std::cin,playAgain);
+
+		if(playAgain[0] == 'y' || playAgain[0] == 'Y')
+		{
+			mainMenu();
+		}
+		else
+		{
+			std::cout << "Exiting program" << std::endl;
+		}
 	}
 	else
 	{
-		std::cout << "Exiting program" << std::endl;
+		mainMenu();
 	}
+
+
 
 }
 
-void deckBuilding1()
+void chooseDeckToModify()
 {
 	std::string temp;
 	int choice;
-	std::cout << "          === [ MODIFY  DECK ] ===" << std::endl <<std::endl;
+
+	std::cout << "          ";
+	printLine('_',35,true);
 	std::cout << "          [1] Modify White Deck" << std::endl;
 	std::cout << "          [2] Modify Black Cards" << std::endl;
 	std::cout << "          [3] Main Menu" << std::endl;
@@ -200,12 +207,12 @@ void deckBuilding1()
 	{
 		case 1:
 		{
-			deckBuilding2(true);
+			modifyDeck(true);
 			break;
 		}
 		case 2:
 		{
-			deckBuilding2(false);
+			modifyDeck(false);
 			break;
 		}
 		case 3:
@@ -215,7 +222,7 @@ void deckBuilding1()
 		}
 	}
 }
-void deckBuilding2(bool whiteCard)
+void modifyDeck(bool whiteCard)
 {
 	CardTree myCardTree;
 	std::string filename = (whiteCard ? "whiteCards.txt" : "blackCards.txt");
@@ -234,12 +241,14 @@ void deckBuilding2(bool whiteCard)
 	int choice = 0;
 	while(choice != 4 || choice != 5)
 	{
-		std::cout << std::endl <<std::endl;
+		std::cout <<std::endl;
+		std::cout << "          ";
+		printLine('_',35,true);
 		std::cout << "          [1] Print "<< (whiteCard ? "White" : "Black") <<" Cards" << std::endl;
 		std::cout << "          [2] Add New "<< (whiteCard ? "White" : "Black") <<" Card" << std::endl;
 		std::cout << "          [3] Edit Existing "<< (whiteCard ? "White" : "Black") <<" Card" << std::endl;
-		std::cout << "          [4] Go back without saving" << std::endl;
-		std::cout << "          [5] Save and go back" << std::endl;
+		std::cout << "          [4] Discard Changes & Go Back" << std::endl;
+		std::cout << "          [5] Save Changes & Go Back" << std::endl;
 		std::cout << std::endl;
 		std::cout << "          Enter choice: ";
 
@@ -272,13 +281,13 @@ void deckBuilding2(bool whiteCard)
 			}
 			case 4:
 			{
-				deckBuilding1();
+				chooseDeckToModify();
 				break;
 			}
 			case 5:
 			{
 				myCardTree.writeTreeToFile(filename);
-				deckBuilding1();
+				chooseDeckToModify();
 				break;
 			}
 		}
@@ -324,7 +333,8 @@ void mainMenu()
 	{
 		case 1: // new game
 		{
-			std::cout << "          ====[ GAME SETUP ] ====" << std::endl <<std::endl;
+			std::cout << "          ";
+			printLine('_',35,true);
 			std::cout << std::endl << "          Enter number of players ( Minimum: 3 ): ";
 			while(getline(std::cin,temp))
 			{
@@ -369,7 +379,7 @@ void mainMenu()
 		}
 		case 2: // deck building
 		{
-			deckBuilding1();
+			chooseDeckToModify();
 			break;
 		}
 

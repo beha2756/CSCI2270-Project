@@ -113,10 +113,10 @@ void printEndlines(int n)
 
 void printRoundWinner(std::string winnerName)
 {
-	printEndlines(10);
+	printEndlines(1);
 	std::string print = winnerName + " has won this round!";
-	printPopUp(" ",print," ");
-	printEndlines(10);
+	printPopUp(print," ","Press [ENTER] to continue");
+	printEndlines(1);
 }
 
 /*
@@ -556,7 +556,7 @@ void Game::addPlayers()
 /*
 Purpose: Simulates one turn of the game
 Parameters: None
-Return: None
+Return: True if game is still running, false if game should be exited
 */
 bool Game::playTurn()
 {
@@ -605,9 +605,9 @@ bool Game::playTurn()
 			chosenCardNum = stoi(temp);
 
 			//exit condition
-			if(chosenCardNum == 9)
+			if(chosenCardNum == 0)
 			{
-				return true;
+				return false;
 			}
 			//Checks for invalid NUMBER inputs
 			while(chosenCardNum > 7 || chosenCardNum < 1)
@@ -622,7 +622,6 @@ bool Game::playTurn()
 			//adds the chosen card to the played cards vector and also removes that card from the hand
 			playedCards.push_back(Players[i].playCard(chosenCardNum-1));
 		}
-		// return false;
 	}
 
 
@@ -653,4 +652,5 @@ bool Game::playTurn()
 
 	//deals new cards
 	dealHands(1, cardCzar);
+	return true;
 }
