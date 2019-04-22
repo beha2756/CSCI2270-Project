@@ -101,9 +101,6 @@ void editCard(CardTree& ct){
                 card->keyword = newKeyword;
             }
         }
-
-
-
     }else{
         std::cout << "That card could not be found. Try again with a different keyword" << std::endl;
         std::cout << "You can print all of the cards to see their keywords" << std::endl;
