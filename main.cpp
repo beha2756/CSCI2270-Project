@@ -181,8 +181,8 @@ void deckBuilding1()
 	std::string temp;
 	int choice;
 	std::cout << "          === [ MODIFY  DECK ] ===" << std::endl <<std::endl;
-	std::cout << "          [1] White Cards" << std::endl;
-	std::cout << "          [2] Black Cards" << std::endl;
+	std::cout << "          [1] Modify White Deck" << std::endl;
+	std::cout << "          [2] Modify Black Cards" << std::endl;
 	std::cout << "          [3] Main Menu" << std::endl;
 	std::cout << std::endl;
 	std::cout << "          Enter choice: ";
