@@ -13,7 +13,7 @@ I walked into my roommate watching ____|roomateWatching
 I was gonna take a shower but ____|takeAShowerBut
 ____ is a good reason to bring shower shoes|showerShoes
 I spend all my Munch Money on ____|munchMoney
-Really? ____|Really?
+Really? ____|Really
 Data Structures and ____, name a better combo|combo
 If it weren't for ____, I would've gotten a 4.0|4.0
 Even ____ couldn't stop them|couldntStopThem
