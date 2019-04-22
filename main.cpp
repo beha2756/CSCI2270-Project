@@ -232,7 +232,7 @@ void deckBuilding2(bool whiteCard)
 	//print cards
 	std::string temp;
 	int choice = 0;
-	while(choice != 4)
+	while(choice != 4 || choice != 5)
 	{
 		std::cout << std::endl <<std::endl;
 		std::cout << "          [1] Print "<< (whiteCard ? "White" : "Black") <<" Cards" << std::endl;
@@ -249,7 +249,7 @@ void deckBuilding2(bool whiteCard)
 			if(choice >= 1 && choice <= 5)
 				break;
 			else
-				std::cout << "          Invalid input. Please enter a number between 1 and 4." << std::endl;
+				std::cout << "          Invalid input. Please enter a number between 1 and 5." << std::endl;
 				std::cout << "          Enter choice: ";
 		}
 		std::cout << std::endl;
