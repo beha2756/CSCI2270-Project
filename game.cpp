@@ -546,7 +546,14 @@ void Game::addPlayers()
 		Player newPlayer;
 		std::string playerName;
 		std::cout << "          Enter name for Player " << i+1 << ": ";
-		getline(std::cin,playerName);
+
+		while(getline(std::cin,playerName))
+		{
+			if(playerName.size() < 14) break;
+
+			std::cout << "          Invalid Input: Name must be less than 14 characters" << std::endl;
+			std::cout << "          Enter name for Player " << i+1 << ": ";
+		}
 
 		newPlayer.setName(playerName);
 		Players.push_back(newPlayer);
@@ -608,15 +615,13 @@ bool Game::playTurn()
 				{
 					chosenCardNum = stoi(temp);
 
+					//exit condition
+					if(chosenCardNum == 0) return false;
+
 					if(chosenCardNum <= 7 && chosenCardNum >= 1) break;
 				}
 				std::cout << "          Invalid Input" << std::endl;
 				std::cout << "          Enter the card you would like to play (1-7), or 0 to return to main menu: ";
-			}
-			//exit condition
-			if(chosenCardNum == 0)
-			{
-				return false;
 			}
 
 			//adds the chosen card to the played cards vector and also removes that card from the hand
