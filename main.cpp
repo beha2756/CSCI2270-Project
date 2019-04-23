@@ -386,6 +386,7 @@ void mainMenu()
 		{
 			std::cout << "          ";
 			printLine('_',35,true);
+
 			std::cout << std::endl << "          Enter number of players (3-8): ";
 			while(getline(std::cin,temp))
 			{
@@ -398,6 +399,7 @@ void mainMenu()
 				std::cout << "          Invalid Input" << std::endl;
 				std::cout << "          Enter number of players (3-8): ";
 			}
+
 			std::cout << std::endl << "          Enter number of points to win (at least 1): ";
 			while(getline(std::cin,temp))
 			{
