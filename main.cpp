@@ -4,11 +4,22 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <cctype>
 
 #include "game.hpp"
 #include "cardTree.hpp"
 
-void addNewCard(CardTree& ct){
+void mainMenu();
+void chooseDeckToModify();
+void modifyDeck(bool whiteCard);
+
+/*
+Purpose: Runs prompt for user to add new card to a tree
+Parameters: Tree to add card to
+Return: None
+*/
+void addNewCard(CardTree& ct)
+{
     std::cout << "Please enter the text for your new card" << std::endl;
     std::string newCardText;
 
@@ -55,7 +66,13 @@ void addNewCard(CardTree& ct){
     std::cout << "Successfully added to your deck!" << std::endl;
 }
 
-void editCard(CardTree& ct){
+/*
+Purpose: Runs prompt for user to edit a card
+Parameters: Tree in which to edit card
+Return: None
+*/
+void editCard(CardTree& ct)
+{
     std::cout << "Please enter the keyword of the card you would like to edit" << std::endl;
     std::string keyWord;
     getline(std::cin, keyWord);
@@ -113,10 +130,11 @@ void editCard(CardTree& ct){
     }
 }
 
-void mainMenu();
-void chooseDeckToModify();
-void modifyDeck(bool whiteCard);
-
+/*
+Purpose: Prints an ASCII image from text file to console
+Parameters: Filename of file to be printed
+Return: None
+*/
 void disp(std::string filename)
 {
 	std::ifstream myStream(filename);
@@ -126,6 +144,12 @@ void disp(std::string filename)
 		std::cout << line << std::endl;
 	}
 }
+
+/*
+Purpose: Prints a line of a given char to the console
+Parameters: Char to print, number of times to print it, and whether to include an endline
+Return: None
+*/
 void printLine(char c, int n, bool endline)
 {
 	for(int i=0; i<n;i++)
@@ -138,6 +162,11 @@ void printLine(char c, int n, bool endline)
 	}
 }
 
+/*
+Purpose: Main game function, called when a game is started
+Parameters: Number of players and number of points a player must have to win
+Return: None
+*/
 void playGame(int numPlayers,int maxPoints)
 {
 
@@ -181,6 +210,11 @@ void playGame(int numPlayers,int maxPoints)
 
 }
 
+/*
+Purpose: Allows user to choose which deck they want to modify
+Parameters: None
+Return: None
+*/
 void chooseDeckToModify()
 {
 	std::string temp;
@@ -196,12 +230,15 @@ void chooseDeckToModify()
 
 	while(getline(std::cin,temp))
 	{
-		choice = stoi(temp);
-		if(choice >= 1 && choice <= 3)
-			break;
-		else
-			std::cout << "          Invalid input. Please enter a number between 1 and 3." << std::endl;
-			std::cout << "          Enter choice: ";
+		if(isdigit(temp[0]))
+		{
+			choice = stoi(temp);
+
+			if(choice >= 1 && choice <= 3) break;
+		}
+
+		std::cout << "          Invalid input. Please enter a number between 1 and 3." << std::endl;
+		std::cout << "          Enter choice: ";
 	}
 	switch(choice)
 	{
@@ -222,6 +259,12 @@ void chooseDeckToModify()
 		}
 	}
 }
+
+/*
+Purpose: Allows user to modify a deck, adding/modifying cards
+Parameters: Bool for whether deck is white card
+Return: None
+*/
 void modifyDeck(bool whiteCard)
 {
 	CardTree myCardTree;
@@ -254,7 +297,9 @@ void modifyDeck(bool whiteCard)
 
 		while(getline(std::cin,temp))
 		{
-			choice = stoi(temp);
+			if(isdigit(temp[0]))
+				choice = stoi(temp);
+
 			if(choice >= 1 && choice <= 5)
 				break;
 			else
@@ -295,6 +340,11 @@ void modifyDeck(bool whiteCard)
 	mainMenu();
 }
 
+/*
+Purpose: Main menu called from main function, allows user to choose what they want to do
+Parameters: None
+Return: None
+*/
 void mainMenu()
 {
 	std::string temp;
@@ -317,7 +367,8 @@ void mainMenu()
 	//Check for correct input
 	while(getline(std::cin,temp))
 	{
-		choice = stoi(temp);
+		if(isdigit(temp[0]))
+			choice = stoi(temp);
 		if(choice >= 1 && choice <= 3)
 			break;
 		else
@@ -335,43 +386,29 @@ void mainMenu()
 		{
 			std::cout << "          ";
 			printLine('_',35,true);
-			std::cout << std::endl << "          Enter number of players ( Minimum: 3 ): ";
+			std::cout << std::endl << "          Enter number of players (3-8): ";
 			while(getline(std::cin,temp))
 			{
-				numPlayers = stoi(temp);
-				if(!std::cin)
+				if(isdigit(temp[0]))
 				{
-					std::cout << "          Error: Input must be integer"  << std::endl;
-					std::cout << std::endl << "          Enter number of players ( Minimum: 3): ";
+					numPlayers = stoi(temp);
+
+					if(numPlayers >= 3 && numPlayers <= 8) break;
 				}
-				else if(numPlayers < 3 || numPlayers > 8)
-				{
-					std::cout << "          Error: Game must have 3-8 players" << std::endl;
-					std::cout << std::endl << "          Enter number of players ( Minimum: 3): ";
-				}
-				else
-				{
-					break;
-				}
+				std::cout << "          Invalid Input" << std::endl;
+				std::cout << "          Enter number of players (3-8): ";
 			}
-			std::cout << "          Enter number of points to win: ";
+			std::cout << std::endl << "          Enter number of points to win (at least 1): ";
 			while(getline(std::cin,temp))
 			{
-				maxPoints = stoi(temp);
-				if(!std::cin)
+				if(isdigit(temp[0]))
 				{
-					std::cout << "          Error: Input must be integer"  << std::endl;
-					std::cout << "          Enter number of points to win: ";
+					maxPoints = stoi(temp);
+
+					if(maxPoints > 0) break;
 				}
-				else if(numPlayers < 1)
-				{
-					std::cout << "          Error: Number of points to win must be at least 1" << std::endl;
-					std::cout << "          Enter number of points to win: ";
-				}
-				else
-				{
-					break;
-				}
+				std::cout << "          Invalid Input" << std::endl;
+				std::cout << "          Enter number of points to win (at least 1): ";
 			}
 			std::cout << std::endl;
 			playGame(numPlayers,maxPoints);

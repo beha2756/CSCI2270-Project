@@ -600,25 +600,25 @@ bool Game::playTurn()
 			//Prints the players cards
 			printCards(Players[i].getPlayerCards(), true);
 			std::cout << std::endl;
-			std::cout << "          Enter the card you would like to play (1-7) or 0 to return to main menu: ";
-			getline(std::cin,temp);
-			chosenCardNum = stoi(temp);
+			std::cout << "          Enter the card you would like to play (1-7), or 0 to return to main menu: ";
 
+			while(getline(std::cin,temp))
+			{
+				if(isdigit(temp[0]))
+				{
+					chosenCardNum = stoi(temp);
+
+					if(chosenCardNum <= 7 && chosenCardNum >= 1) break;
+				}
+				std::cout << "          Invalid Input" << std::endl;
+				std::cout << "          Enter the card you would like to play (1-7), or 0 to return to main menu: ";
+			}
 			//exit condition
 			if(chosenCardNum == 0)
 			{
 				return false;
 			}
-			//Checks for invalid NUMBER inputs
-			while(chosenCardNum > 7 || chosenCardNum < 1)
-			{
-				//gets a new number for a card to be played
-				std::cout << "          Error: Choice must be integer between 1 and 7" << std::endl;
-				std::cout << "          Enter the number of the card you would like to play (1-7): ";
-				// printCards(Players[i].getPlayerCards(), true);
-				getline(std::cin,temp);
-				chosenCardNum = stoi(temp);
-			}
+
 			//adds the chosen card to the played cards vector and also removes that card from the hand
 			playedCards.push_back(Players[i].playCard(chosenCardNum-1));
 		}
@@ -636,8 +636,18 @@ bool Game::playTurn()
 
 	//gets the number of the card the card czar chose
 	std::cout << "          Enter the number of the winning card (1-" << numPlayers-1 <<"): ";
-	getline(std::cin,temp);
-	winningCard = stoi(temp);
+	while(getline(std::cin,temp))
+	{
+		if(isdigit(temp[0]))
+		{
+			winningCard = stoi(temp);
+
+			if(winningCard >= 1 && winningCard <= numPlayers-1) break;
+		}
+		std::cout << "          Invalid Input" << std::endl;
+		std::cout << "          Enter the number of the winning card (1-" << numPlayers-1 <<"): ";
+	}
+
 
 	//prints out the name of the winning player
 	printRoundWinner(Players[playerNum[winningCard - 1]].getPlayerName());
